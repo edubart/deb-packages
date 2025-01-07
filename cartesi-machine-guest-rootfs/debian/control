@@ -1,0 +1,19 @@
+Source: cartesi-machine-guest-rootfs
+Section: otherosfs
+Priority: optional
+Maintainer: Cartesi Machine Reference Unit
+Homepage: https://github.com/cartesi/machine-emulator-tools
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/cartesi-machine-guest-rootfs.git
+#Vcs-Browser: https://salsa.debian.org/debian/cartesi-machine-guest-rootfs
+
+Package: cartesi-machine-guest-rootfs
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Cartesi Machine guest root filesystem

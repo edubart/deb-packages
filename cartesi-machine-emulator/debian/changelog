@@ -1,6 +1,5 @@
 cartesi-machine-emulator (0.18.2-1) UNRELEASED; urgency=low
 
-  * Initial release. Closes: #nnnn
-    <nnnn is the bug number of your ITP>
+  * Initial Cartesi Machine emulator release for Debian.
 
  -- root <>  Mon, 06 Jan 2025 18:41:38 +0000

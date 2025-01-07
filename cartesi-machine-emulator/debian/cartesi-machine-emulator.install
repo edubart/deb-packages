@@ -1,0 +1,5 @@
+usr/bin/*
+usr/lib/*.so
+usr/lib/lua/5.4/*.so
+usr/lib/lua/5.4/cartesi/*.so
+usr/share/*
