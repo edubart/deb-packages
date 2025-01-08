@@ -2,7 +2,7 @@ FROM debian:bookworm-20241223-slim AS toolchain
 
 # Install build essential
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y build-essential wget ca-certificates lua5.4 debhelper && \
+    apt-get install --no-install-recommends -y build-essential wget ca-certificates debhelper && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 WORKDIR /work
@@ -18,7 +18,7 @@ ARG EMUALTOR_PATCH_SHA256SUM=8f513f065e94e6ab969cd27186421e28db0091b3a563cd87280
 # Download and extract
 RUN wget -O cartesi-machine-emulator_${EMULATOR_VER}.orig.tar.gz https://github.com/cartesi/machine-emulator/archive/refs/tags/v${EMULATOR_TAG}.tar.gz && \
     echo "${EMUALTOR_TARGZ_SHA256SUM} cartesi-machine-emulator_${EMULATOR_VER}.orig.tar.gz" | sha256sum --check && \
-    tar xf cartesi-machine-emulator_${EMULATOR_VER}.orig.tar.gz && \
+    tar -xf cartesi-machine-emulator_${EMULATOR_VER}.orig.tar.gz && \
     mv machine-emulator-${EMULATOR_TAG} cartesi-machine-emulator-${EMULATOR_VER}
 
 WORKDIR /work/cartesi-machine-emulator-${EMULATOR_VER}
@@ -55,7 +55,11 @@ ARG GUEST_LINUX_BIN_SHA256SUM=65dd100ff6204346ac2f50f772721358b5c1451450ceb39a15
 RUN mkdir cartesi-machine-guest-linux-${GUEST_LINUX_VER} && \
     wget -O cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin https://github.com/cartesi/image-kernel/releases/download/v${GUEST_LINUX_TAG}/${GUEST_LINUX_NAME}.bin && \
     echo "${GUEST_LINUX_BIN_SHA256SUM} cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin" | sha256sum --check && \
-    tar -czf cartesi-machine-guest-linux_${GUEST_LINUX_VER}.orig.tar.gz cartesi-machine-guest-linux-${GUEST_LINUX_VER}
+    tar --sort=name \
+        --mtime="@$(stat -c %Y cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin)" \
+        --owner=0 --group=0 --numeric-owner \
+        --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
+        -czf cartesi-machine-guest-linux_${GUEST_LINUX_VER}.orig.tar.gz cartesi-machine-guest-linux-${GUEST_LINUX_VER}
 
 WORKDIR /work/cartesi-machine-guest-linux-${GUEST_LINUX_VER}
 
@@ -78,7 +82,11 @@ ARG GUEST_ROOTFS_BIN_SHA256SUM=7d73e6298f9b7bafec1cfcb4923f1d9c80b33816cc9ecd00f
 RUN mkdir cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER} && \
     wget -O cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2 https://github.com/cartesi/machine-emulator-tools/releases/download/v${GUEST_ROOTFS_TAG}/${GUEST_ROOTFS_NAME}.ext2 && \
     echo "${GUEST_ROOTFS_BIN_SHA256SUM} cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2" | sha256sum --check && \
-    tar -czf cartesi-machine-guest-rootfs_${GUEST_ROOTFS_VER}.orig.tar.gz cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
+    tar --sort=name \
+        --mtime="@$(stat -c %Y cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2)" \
+        --owner=0 --group=0 --numeric-owner \
+        --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
+        -czf cartesi-machine-guest-rootfs_${GUEST_ROOTFS_VER}.orig.tar.gz cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
 
 WORKDIR /work/cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
 
