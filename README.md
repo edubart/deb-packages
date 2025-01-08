@@ -1,34 +1,48 @@
-# Debian PPA
+# Cartesi Debian PPA
 
-Here is a quick example on how to use the PPA:
+Cartesi Machine and other Cartesi related software can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble)
+using package repository provided by this PPA.
 
-```
-apt-get update
-apt-get install -y curl gpg
-curl -fsSL https://edubart.github.io/debian-ppa/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
-echo "deb [signed-by=/etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg] https://edubart.github.io/debian-ppa ./" | tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
-apt-get update
-apt-get install -y cartesi-machine
-cartesi-machine
-```
-
-## Cloning
-
-If you with to clone this repository to contribute to a new package:
+Here is a quick example on how to use it:
 
 ```sh
-git clone git@github.com:edubart/debian-ppa.git
+# Install required tools
+apt-get update
+apt-get install -y --no-install-recommends wget gpg sudo ca-certificates apt-transport-https
+
+# Install the signing key to verify downloaded packages
+wget -qO - https://edubart.github.io/debian-ppa/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+
+# Create file with repository information
+echo "deb https://edubart.github.io/debian-ppa ./" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+
+# Update list of available packages
+sudo apt-get update
+
+# Install cartesi-machine
+sudo apt-get install -y --no-install-recommends cartesi-machine
+
+# Test cartesi-machine
+cartesi-machine
 ```
 
 ## Building
 
-Make sure you have Docker and `dpkg` installed in your system, then:
+If you would like to contribute to a package addition or update, clone first:
+
+```sh
+git clone git@github.com:edubart/debian-ppa.git
+cd debian-ppa
+```
+
+Then patch the Package build scripts in `Dockerfile` and related subdirectory.
+Make sure you have Docker and `dpkg` installed in your system, then you can build all packages with:
 
 ```sh
 make packages
 ```
 
-This will build all Debian packages and make them available in the `ppa` directory.
+This will build all packages for both amd64/arm64 and make them available in the `ppa` directory.
 
 ## Publishing
 
