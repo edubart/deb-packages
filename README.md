@@ -22,7 +22,7 @@ sudo apt-get update
 # Install cartesi-machine
 sudo apt-get install -y --no-install-recommends cartesi-machine
 
-# Test cartesi-machine
+# Test cartesi-machine by booting Linux and exiting
 cartesi-machine
 ```
 
@@ -56,7 +56,15 @@ Having a GPG for given email already set in the environment,
 you can generate a ppa package index and sign then with:
 
 ```sh
-make update PPA_SIGN_EMAIL=my@email.com
+make update-ppa PPA_SIGN_EMAIL=my@email.com
 ```
 
 Finally do a git commit and push from `ppa` directory.
+
+## Testing
+
+You can test if the PPA is working properly with:
+
+```sh
+make test-ppa
+```

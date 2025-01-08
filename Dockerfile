@@ -10,6 +10,7 @@ WORKDIR /work
 ########################################
 ## Build emulator package
 FROM toolchain AS cartesi-machine-emulator
+
 ARG EMULATOR_VER=0.18.2
 ARG EMULATOR_TAG=${EMULATOR_VER}-test1
 ARG EMUALTOR_TARGZ_SHA256SUM=9d5fb1139f0997f665a2130ab4a698080d7299d29d5e69494764510587ca9566
@@ -46,6 +47,7 @@ RUN dpkg-buildpackage && \
 ########################################
 ## Build guest Linux package
 FROM toolchain AS cartesi-machine-guest-linux
+
 ARG GUEST_LINUX_VER=0.20.0
 ARG GUEST_LINUX_TAG=${GUEST_LINUX_VER}
 ARG GUEST_LINUX_NAME=linux-6.5.13-ctsi-1-v${GUEST_LINUX_TAG}
@@ -73,6 +75,7 @@ RUN dpkg-buildpackage --build=source,all && \
 ########################################
 ## Build guest rootfs package
 FROM toolchain AS cartesi-machine-guest-rootfs
+
 ARG GUEST_ROOTFS_VER=0.16.2
 ARG GUEST_ROOTFS_TAG=${GUEST_ROOTFS_VER}-test2
 ARG GUEST_ROOTFS_NAME=rootfs-tools-v${GUEST_ROOTFS_TAG}
@@ -101,8 +104,8 @@ RUN dpkg-buildpackage --build=source,all && \
 ## Install and test package
 FROM debian:bookworm-20241223-slim
 
-# Always test on a updated system
-RUN apt-get update && apt-get upgrade -y
+# Always test on an updated system
+RUN apt-get update && apt-get upgrade --no-install-recommends -y
 
 WORKDIR /work
 COPY --from=cartesi-machine-emulator /work /work
@@ -116,4 +119,4 @@ RUN apt-get install -fy $(find . -name '*.deb')
 RUN find . -name '*.deb' -exec echo {} \; -exec dpkg -c {} \;
 
 # Test booting a cartesi machine
-RUN cartesi-machine
+RUN cartesi-machine && cartesi-machine --version
