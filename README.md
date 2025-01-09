@@ -1,7 +1,10 @@
-# Cartesi Debian PPA
+# Cartesi deb packages
 
-Cartesi Machine and other Cartesi related software can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble)
-using package repository provided by this PPA.
+This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software to be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble)
+using an APT package manager.
+
+All packages binaries are available in the [apt](/tree/apt) branch,
+while the scripts to generate them are available in the main branch.
 
 Here is a quick example on how to use it:
 
@@ -11,10 +14,10 @@ apt-get update
 apt-get install -y --no-install-recommends wget gpg sudo ca-certificates apt-transport-https
 
 # Install the signing key to verify downloaded packages
-wget -qO - https://edubart.github.io/debian-ppa/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/debian-ppa ./" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb https://edubart.github.io/deb-packages host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
 
 # Update list of available packages
 sudo apt-get update
@@ -31,8 +34,8 @@ cartesi-machine
 If you would like to contribute to a package addition or update, clone first:
 
 ```sh
-git clone git@github.com:edubart/debian-ppa.git
-cd debian-ppa
+git clone git@github.com:edubart/deb-packages.git
+cd deb-packages
 ```
 
 Then patch the Package build scripts in `Dockerfile` and related subdirectory.
@@ -42,29 +45,35 @@ Make sure you have Docker and `dpkg` installed in your system, then you can buil
 make packages
 ```
 
-This will build all packages for both amd64/arm64 and make them available in the `ppa` directory.
+This will build all packages for both amd64/arm64 and make them available in the `apt` directory.
 
 ## Publishing
 
-First make sure to have `ppa` branch cloned by doing:
+First make sure to have `apt` branch cloned by doing:
 
 ```sh
-git worktree add ppa -b ppa origin/ppa
+git worktree add apt -b apt origin/apt
 ```
 
 Having a GPG for given email already set in the environment,
-you can generate a ppa package index and sign then with:
+every developer must at least once add it to the keyring, with:
 
 ```sh
-make update-ppa PPA_SIGN_EMAIL=my@email.com
+make add-key APT_SIGN_EMAIL=my@email.com
 ```
 
-Finally do a git commit and push from `ppa` directory.
+Then you can regenerate an apt package index and sign then with:
+
+```sh
+make update-apt APT_SIGN_EMAIL=my@email.com
+```
+
+Finally do a git commit and push from `apt` directory.
 
 ## Testing
 
-You can test if the PPA is working properly with:
+You can test if the APT is working properly with:
 
 ```sh
-make test-ppa
+make test-host-apt PLATFORM=amd64
 ```

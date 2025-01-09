@@ -13,10 +13,10 @@ apt-get update
 apt-get install -y --no-install-recommends wget gpg sudo ca-certificates apt-transport-https
 
 # Install the signing key to verify downloaded packages
-wget -qO - https://edubart.github.io/debian-ppa/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/debian-ppa ./" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb https://edubart.github.io/deb-packages host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
 
 # Update list of available packages
 sudo apt-get update

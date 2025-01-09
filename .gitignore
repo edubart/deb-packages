@@ -1,7 +1,1 @@
-*.deb
-*.changes
-*.buildinfo
-*.tar.xz
-*.tar.gz
-*.dsc
-ppa
+apt
