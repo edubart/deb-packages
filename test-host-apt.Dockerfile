@@ -1,6 +1,8 @@
 ARG IMAGE=debian:bookworm-slim
 FROM ${IMAGE}
 
+ARG APT_URL=https://
+
 # Install required tools
 RUN apt-get update && apt-get install -y --no-install-recommends wget gpg sudo ca-certificates
 
@@ -9,16 +11,16 @@ RUN <<EOF
 set -e
 
 # Install the signing key to verify downloaded packages
-wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+wget -qO - ${APT_URL}/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/deb-packages ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb ${APT_URL} ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-host.list
 
 # Update list of available packages
 sudo apt-get update
 
 # Install cartesi-machine
-sudo apt-get install -y --no-install-recommends cartesi-machine
+sudo apt-get install -y cartesi-machine
 
 # Test cartesi-machine
 cartesi-machine

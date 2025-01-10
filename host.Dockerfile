@@ -107,16 +107,13 @@ RUN dpkg-buildpackage --build=source,all && \
 ## Install and test packages
 FROM debian:bookworm-20241223-slim
 
-# Always test on an updated system
-RUN apt-get update && apt-get upgrade --no-install-recommends -y
-
 WORKDIR /work
 COPY --from=cartesi-machine-emulator /work /work
 COPY --from=cartesi-machine-guest-linux /work /work
 COPY --from=cartesi-machine-guest-rootfs /work /work
 
 # Test installing all deb packages
-RUN apt-get install -fy $(find . -name '*.deb')
+RUN apt-get update && apt-get install -fy $(find . -name '*.deb')
 
 # List all files (for debugging)
 RUN find . -name '*.deb' -exec echo {} \; -exec dpkg -c {} \;

@@ -4,6 +4,7 @@ GUEST_IMG=cartesi/guest-deb-packages
 HOST_APT_REPO=host/stable
 GUEST_APT_REPO=$(LATEST_CARTESI_MACHINE_MAJMIN)-guest/stable
 PLATFORM?=$(shell dpkg --print-architecture)
+APT_URL=https://edubart.github.io/deb-packages
 
 packages: host-packages guest-packages ## Build host (amd64/arm64) and guest (riscv64) packages
 
@@ -46,16 +47,20 @@ update-apt-repo: apt/$(APT_REPO) ## Update APT package list and sign packages fo
 	cd apt && apt-ftparchive release $(APT_REPO) > $(APT_REPO)/Release
 	gpg --default-key "$(APT_SIGN_EMAIL)" -abs -o - apt/$(APT_REPO)/Release > apt/$(APT_REPO)/Release.gpg
 	gpg --default-key "$(APT_SIGN_EMAIL)" --clearsign -o - apt/$(APT_REPO)/Release > apt/$(APT_REPO)/InRelease
+	echo "deb $(APT_URL) ./$(APT_REPO)/" > apt/$(APT_REPO)/sources.list
 
 add-key: ## Add a new GPG signing public key to APT keyring
 	gpg --armor --export "$(APT_SIGN_EMAIL)" >> apt/KEY.gpg
+	cat apt/KEY.gpg | gpg --dearmor -o apt/KEY.gpg.bin
+
+test-apt: test-host-apt	test-guest-apt
 
 test-host-apt: ## Test if remote host APT is working properly for given PLATFORM
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg IMAGE=debian:bookworm-slim --progress=plain --file test-host-apt.Dockerfile .
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg IMAGE=ubuntu:24.04 --progress=plain --file test-host-apt.Dockerfile .
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg IMAGE=debian:bookworm-slim --progress=plain --file test-host-apt.Dockerfile .
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg IMAGE=ubuntu:24.04 --progress=plain --file test-host-apt.Dockerfile .
 
 test-guest-apt: ## Test if remote guest APT is working properly
-	docker build --no-cache --platform=linux/riscv64 --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
+	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
 
 apt/%:
 	mkdir -p $@

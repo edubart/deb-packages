@@ -15,13 +15,13 @@ Here is a quick example on how to use it:
 wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/deb-packages ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb https://edubart.github.io/deb-packages ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-host.list
 
 # Update list of available packages
 sudo apt-get update
 
 # Install cartesi-machine
-sudo apt-get install -y --no-install-recommends cartesi-machine
+sudo apt-get install -y cartesi-machine
 
 # Test cartesi-machine by booting Linux and exiting
 cartesi-machine
@@ -30,20 +30,38 @@ cartesi-machine
 ## Quick start (guest)
 
 Packages provided by this repository can be installed on **Ubuntu 24.04** (Noble) for *riscv64* guest architecture using an APT package manager.
-Here is a quick example on how to use it:
+Here is a quick example on how to use it using:
 
 ```sh
 # Install the GPG key to verify repository packages
 wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/deb-packages ./${CARTESI_MACHINE_MAJMIN}-guest/stable/" | tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb https://edubart.github.io/deb-packages ./0.18-guest/stable/" | tee /etc/apt/sources.list.d/cartesi-guest.list
 
 # Update list of available packages
 apt-get update
 
 # Install cartesi-machine-guest-tools
-apt-get install -y --no-install-recommends cartesi-machine-guest-tools
+apt-get install -y cartesi-machine-guest-tools
+```
+
+### Guest using Dockerfile
+
+In case you are building a guest rootfs with a Dockerfile, it could be installed with the need of using `wget` or `gpg`, this way:
+
+```Dockerfile
+FROM --platform=linux/riscv64 ubuntu:24.04
+
+# Add guest apt repository
+ADD --chmod=644 https://edubart.github.io/deb-packages/KEY.gpg.bin /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+ADD --chmod=644 https://edubart.github.io/deb-packages/0.18-guest/stable/sources.list /etc/apt/sources.list.d/cartesi-guest.list
+
+# Install guest tools
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    apt-get update && \
+    apt-get install -y cartesi-machine-guest-tools
 ```
 
 ## Building
@@ -64,7 +82,18 @@ make packages
 
 This will build all packages for both amd64/arm64 and make them available in the `apt` directory.
 
+## Testing
+
+You can test if the APT is working properly for both host and guest with:
+
+```sh
+make test-apt
+```
+
 ## Publishing
+
+This is only relevant for maintainers of this repository,
+in case you need to update listing of APT packages.
 
 First make sure to have `apt` branch cloned by doing:
 
@@ -86,11 +115,3 @@ make update-apt APT_SIGN_EMAIL=my@email.com
 ```
 
 Finally do a git commit and push from `apt` directory.
-
-## Testing
-
-You can test if the APT is working properly with:
-
-```sh
-make test-host-apt PLATFORM=amd64
-```
