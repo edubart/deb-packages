@@ -14,7 +14,7 @@ COPY cartesi-machine-emulator /work/cartesi-machine-emulator
 RUN ./cartesi-machine-emulator/build.sh
 
 ########################################
-## Build guest Linux package
+## Build linux image package
 FROM toolchain AS cartesi-machine-linux-image
 COPY cartesi-machine-linux-image /work/cartesi-machine-linux-image
 RUN ./cartesi-machine-linux-image/build.sh

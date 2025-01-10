@@ -1,0 +1,17 @@
+# Maintainer: Eduardo Bart <edub4rt@gmail.com>
+pkgname=cartesi-machine-linux-image
+pkgver=0.20.0
+_linuxver=linux-6.5.13-ctsi-1
+pkgrel=1
+pkgdesc="Cartesi Machine guest Linux kernel image"
+url="https://github.com/cartesi/image-kernel"
+arch="noarch"
+license="GPL-2.0"
+options="!check"
+source="linux.bin::https://github.com/cartesi/image-kernel/releases/download/v$pkgver/$_linuxver-v$pkgver.bin"
+sha256sums="65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947  linux.bin"
+
+package() {
+    cd "$srcdir"
+    install -Dm644 linux.bin "$pkgdir"/usr/share/cartesi-machine/images/linux.bin
+}

@@ -1,4 +1,4 @@
-# Cartesi deb packages
+# Cartesi Debian packages
 
 This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
 
