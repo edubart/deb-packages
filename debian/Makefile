@@ -5,6 +5,7 @@ HOST_APT_REPO=host/stable
 GUEST_APT_REPO=$(LATEST_CARTESI_MACHINE_MAJMIN)-guest/stable
 PLATFORM?=$(shell dpkg --print-architecture)
 APT_URL=https://edubart.github.io/deb-packages
+APT_PATH=../cdn/apt
 
 packages: host-packages guest-packages ## Build host (amd64/arm64) and guest (riscv64) packages
 
@@ -15,21 +16,21 @@ host-packages: ## Build host packages for amd64/arm64 platforms
 
 guest-packages: copy-guest-packages ## Build guest packages for riscv64
 
-copy-host-packages: host-image apt/$(HOST_APT_REPO) ## Copy host packages built from Docker to apt directory for given PLATFORM
+copy-host-packages: host-image $(APT_PATH)/$(HOST_APT_REPO) ## Copy host packages built from Docker to apt directory for given PLATFORM
 	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) \
 		COPY_EXT="deb"
 
-copy-host-packages-source: host-image apt/$(HOST_APT_REPO) ## Copy host package sources from Docker to apt directory for given PLATFORM
+copy-host-packages-source: host-image $(APT_PATH)/$(HOST_APT_REPO) ## Copy host package sources from Docker to apt directory for given PLATFORM
 	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) \
 		COPY_EXT="{orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
 
-copy-guest-packages: guest-image apt/$(GUEST_APT_REPO) ## Copy guest packages built from Docker to apt directory
+copy-guest-packages: guest-image $(APT_PATH)/$(GUEST_APT_REPO) ## Copy guest packages built from Docker to apt directory
 	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(GUEST_IMG) APT_REPO=$(GUEST_APT_REPO) \
 		COPY_EXT="{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
 
 copy-image-files:
 	docker run --user $(shell id -u):$(shell id -g) --volume .:/mnt --rm -it --platform=linux/$(DOCKER_PLATFORM) $(DOCKER_IMG) bash -c \
-		"cp *.$(COPY_EXT) /mnt/apt/$(APT_REPO)"
+		"cp *.$(COPY_EXT) /mnt/$(APT_PATH)/$(APT_REPO)"
 
 host-image: ## Build Docker image containing the packages for host with given PLATFORM
 	docker build --platform=linux/$(PLATFORM) --tag=$(HOST_IMG) --progress=plain --file host.Dockerfile .
@@ -41,17 +42,17 @@ update: ## Update APT package list and sign packages
 	$(MAKE) update-apt-repo APT_REPO=$(HOST_APT_REPO)
 	$(MAKE) update-apt-repo APT_REPO=$(GUEST_APT_REPO)
 
-update-apt-repo: apt/$(APT_REPO) ## Update APT package list and sign packages for given APT_REPO
-	cd apt && dpkg-scanpackages --multiversion $(APT_REPO) > $(APT_REPO)/Packages
-	gzip -k -f apt/$(APT_REPO)/Packages
-	cd apt && apt-ftparchive release $(APT_REPO) > $(APT_REPO)/Release
-	gpg --default-key "$(APT_SIGN_EMAIL)" -abs -o - apt/$(APT_REPO)/Release > apt/$(APT_REPO)/Release.gpg
-	gpg --default-key "$(APT_SIGN_EMAIL)" --clearsign -o - apt/$(APT_REPO)/Release > apt/$(APT_REPO)/InRelease
-	echo "deb $(APT_URL) ./$(APT_REPO)/" > apt/$(APT_REPO)/sources.list
+update-apt-repo: $(APT_PATH)/$(APT_REPO) ## Update APT package list and sign packages for given APT_REPO
+	cd $(APT_PATH) && dpkg-scanpackages --multiversion $(APT_REPO) > $(APT_REPO)/Packages
+	gzip -k -f $(APT_PATH)/$(APT_REPO)/Packages
+	cd $(APT_PATH) && apt-ftparchive release $(APT_REPO) > $(APT_REPO)/Release
+	gpg --default-key "$(APT_SIGN_EMAIL)" -abs -o - $(APT_PATH)/$(APT_REPO)/Release > $(APT_PATH)/$(APT_REPO)/Release.gpg
+	gpg --default-key "$(APT_SIGN_EMAIL)" --clearsign -o - $(APT_PATH)/$(APT_REPO)/Release > $(APT_PATH)/$(APT_REPO)/InRelease
+	echo "deb $(APT_URL) ./$(APT_REPO)/" > $(APT_PATH)/$(APT_REPO)/sources.list
 
 add-key: ## Add a new GPG signing public key to APT keyring
-	gpg --armor --export "$(APT_SIGN_EMAIL)" >> apt/KEY.gpg
-	cat apt/KEY.gpg | gpg --dearmor -o apt/KEY.gpg.bin
+	gpg --armor --export "$(APT_SIGN_EMAIL)" >> $(APT_PATH)/KEY.gpg
+	cat $(APT_PATH)/KEY.gpg | gpg --dearmor -o $(APT_PATH)/KEY.gpg.bin
 
 test-apt: test-host-apt	test-guest-apt
 
@@ -62,12 +63,12 @@ test-host-apt: ## Test if remote host APT is working properly for given PLATFORM
 test-guest-apt: ## Test if remote guest APT is working properly
 	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
 
-apt/%:
+$(APT_PATH)/%:
 	mkdir -p $@
 
 distclean: ## Remove everything from APT directories
-	rm -rf apt/host
-	rm -rf apt/*-guest
+	rm -rf $(APT_PATH)/host
+	rm -rf $(APT_PATH)/*-guest
 
 help: ## Show this help
 	@sed \

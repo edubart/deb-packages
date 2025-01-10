@@ -20,7 +20,7 @@ echo "deb ${APT_URL} ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-
 sudo apt-get update
 
 # Install cartesi-machine
-sudo apt-get install -y cartesi-machine
+sudo apt-get install -y cartesi-machine cartesi-machine-dev cartesi-machine-dbgsym
 
 # Test cartesi-machine
 cartesi-machine
