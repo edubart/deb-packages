@@ -4,8 +4,9 @@ GUEST_IMG=cartesi/guest-deb-packages
 HOST_APT_REPO=host/stable
 GUEST_APT_REPO=$(LATEST_CARTESI_MACHINE_MAJMIN)-guest/stable
 PLATFORM?=$(shell dpkg --print-architecture)
-APT_URL=https://edubart.github.io/deb-packages
-APT_PATH=../cdn/apt
+APT_URL=https://edubart.github.io/linux-packages/apt
+CDN_PATH=$(abspath ../cdn)
+APT_PATH=$(CDN_PATH)/apt
 
 packages: host-packages guest-packages ## Build host (amd64/arm64) and guest (riscv64) packages
 
@@ -29,8 +30,8 @@ copy-guest-packages: guest-image $(APT_PATH)/$(GUEST_APT_REPO) ## Copy guest pac
 		COPY_EXT="{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
 
 copy-image-files:
-	docker run --user $(shell id -u):$(shell id -g) --volume .:/mnt --rm -it --platform=linux/$(DOCKER_PLATFORM) $(DOCKER_IMG) bash -c \
-		"cp *.$(COPY_EXT) /mnt/$(APT_PATH)/$(APT_REPO)"
+	docker run --user $(shell id -u):$(shell id -g) --volume .:/mnt --volume $(APT_PATH):/apt --rm -it --platform=linux/$(DOCKER_PLATFORM) $(DOCKER_IMG) bash -c \
+		"cp *.$(COPY_EXT) /apt/$(APT_REPO)"
 
 host-image: ## Build Docker image containing the packages for host with given PLATFORM
 	docker build --platform=linux/$(PLATFORM) --tag=$(HOST_IMG) --progress=plain --file host.Dockerfile .
@@ -54,7 +55,7 @@ add-key: ## Add a new GPG signing public key to APT keyring
 	gpg --armor --export "$(APT_SIGN_EMAIL)" >> $(APT_PATH)/KEY.gpg
 	cat $(APT_PATH)/KEY.gpg | gpg --dearmor -o $(APT_PATH)/KEY.gpg.bin
 
-test-apt: test-host-apt	test-guest-apt
+test: test-host-apt	test-guest-apt
 
 test-host-apt: ## Test if remote host APT is working properly for given PLATFORM
 	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg IMAGE=debian:bookworm-slim --progress=plain --file test-host-apt.Dockerfile .
