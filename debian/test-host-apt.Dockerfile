@@ -22,9 +22,6 @@ sudo apt-get update
 # Install cartesi-machine
 sudo apt-get install -y cartesi-machine cartesi-machine-emulator-dev cartesi-machine-emulator-dbgsym
 
-# Test cartesi-machine
+# Test cartesi-machine by booting Linux and exiting
 cartesi-machine
 EOF
-
-# Show cartesi-machine version (for debugging)
-RUN cartesi-machine --version

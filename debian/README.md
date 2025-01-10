@@ -2,7 +2,7 @@
 
 This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
 
-All packages binaries are available in the [apt](https://github.com/edubart/linux-packages/tree/apt) branch,
+All packages binaries are available in the [cdn](https://github.com/edubart/linux-packages/tree/cdn) branch,
 while the scripts to generate them are available in the main branch.
 
 ## Quick start (host)
@@ -80,7 +80,7 @@ Make sure you have Docker and `dpkg` installed in your system, then you can buil
 make packages
 ```
 
-This will build all packages for both amd64/arm64 and make them available in the `apt` directory.
+This will build all packages for both amd64/arm64 and make them available in the `../cdn/apt` directory.
 
 ## Testing
 
@@ -95,10 +95,10 @@ make test
 This is only relevant for maintainers of this repository,
 in case you need to update listing of APT packages.
 
-First make sure to have `apt` branch cloned by doing:
+First make sure to have `cdn` branch cloned in top level directory by doing:
 
 ```sh
-git worktree add apt -b apt origin/apt
+git worktree add cdn -b cdn origin/cdn
 ```
 
 Having a GPG for given email already set in the environment,
@@ -114,4 +114,4 @@ Then you can regenerate an apt package index and sign then with:
 make update APT_SIGN_EMAIL=my@email.com
 ```
 
-Finally do a git commit and push from `apt` directory.
+Finally do a git commit and push from `cdn` directory.
