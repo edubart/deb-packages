@@ -60,14 +60,14 @@ add-key: ## Add a new GPG signing public key to APT keyring
 	gpg --armor --export "$(APT_SIGN_EMAIL)" >> $(APT_PATH)/KEY.gpg
 	cat $(APT_PATH)/KEY.gpg | gpg --dearmor -o $(APT_PATH)/KEY.gpg.bin
 
-test: test-host-apt	test-guest-apt
+test: test-host	test-guest
 
-test-host-apt: ## Test if remote host APT is working properly for given PLATFORM
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host-apt.Dockerfile .
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host-apt.Dockerfile .
+test-host: ## Test if remote host APT is working properly for given PLATFORM
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host.Dockerfile .
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host.Dockerfile .
 
-test-guest-apt: ## Test if remote guest APT is working properly
-	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg GUEST_BASE_IMG=$(GUEST_BASE_IMG) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
+test-guest: ## Test if remote guest APT is working properly
+	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg GUEST_BASE_IMG=$(GUEST_BASE_IMG) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest.Dockerfile .
 
 $(APT_PATH)/%:
 	mkdir -p $@
@@ -83,4 +83,4 @@ help: ## Show this help
 		-e 's/^\(.\+\):\(.*\)/$(shell tput setaf 6)\1$(shell tput sgr0):\2/' \
 		$(MAKEFILE_LIST) | column -c2 -t -s :
 
-.PHONY: packages host-packages guest-packages copy-host-packages copy-host-packages-source copy-guest-packages copy-image-files host-image guest-image update update-apt-repo add-key test test-host-apt test-guest-apt distclean help
+.PHONY: packages host-packages guest-packages copy-host-packages copy-host-packages-source copy-guest-packages copy-image-files host-image guest-image update update-apt-repo add-key test test-host test-guest distclean help
