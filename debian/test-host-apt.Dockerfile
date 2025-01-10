@@ -1,5 +1,5 @@
-ARG IMAGE=debian:bookworm-slim
-FROM ${IMAGE}
+ARG HOST_BASE_IMG
+FROM ${HOST_BASE_IMG}
 
 ARG APT_URL=https://
 

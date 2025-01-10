@@ -1,10 +1,14 @@
+# The following variables may need to be updated manually during a new release cycle
+HOST_BASE_IMG=debian:bookworm-20241223-slim
+GUEST_BASE_IMG=ubuntu:noble-20241118.1
 LATEST_CARTESI_MACHINE_MAJMIN=0.18
+APT_URL=https://edubart.github.io/linux-packages/apt
+
 HOST_IMG=cartesi/host-deb-packages
 GUEST_IMG=cartesi/guest-deb-packages
 HOST_APT_REPO=host/stable
 GUEST_APT_REPO=$(LATEST_CARTESI_MACHINE_MAJMIN)-guest/stable
 PLATFORM?=$(shell dpkg --print-architecture)
-APT_URL=https://edubart.github.io/linux-packages/apt
 CDN_PATH=$(abspath ../cdn)
 APT_PATH=$(CDN_PATH)/apt
 
@@ -18,26 +22,27 @@ host-packages: ## Build host packages for amd64/arm64 platforms
 guest-packages: copy-guest-packages ## Build guest packages for riscv64
 
 copy-host-packages: host-image $(APT_PATH)/$(HOST_APT_REPO) ## Copy host packages built from Docker to apt directory for given PLATFORM
-	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) \
-		COPY_EXT="deb"
+	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) COPY_EXT="deb"
 
 copy-host-packages-source: host-image $(APT_PATH)/$(HOST_APT_REPO) ## Copy host package sources from Docker to apt directory for given PLATFORM
-	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) \
-		COPY_EXT="{orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
+	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(HOST_IMG) APT_REPO=$(HOST_APT_REPO) COPY_EXT="{orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
 
 copy-guest-packages: guest-image $(APT_PATH)/$(GUEST_APT_REPO) ## Copy guest packages built from Docker to apt directory
-	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(GUEST_IMG) APT_REPO=$(GUEST_APT_REPO) \
-		COPY_EXT="{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
+	$(MAKE) copy-image-files DOCKER_PLATFORM=$(PLATFORM) DOCKER_IMG=$(GUEST_IMG) APT_REPO=$(GUEST_APT_REPO) COPY_EXT="{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes}"
 
 copy-image-files:
-	docker run --user $(shell id -u):$(shell id -g) --volume .:/mnt --volume $(APT_PATH):/apt --rm -it --platform=linux/$(DOCKER_PLATFORM) $(DOCKER_IMG) bash -c \
+	docker run --platform=linux/$(DOCKER_PLATFORM) \
+		--user $(shell id -u):$(shell id -g) \
+		--volume .:/mnt \
+		--volume $(APT_PATH):/apt \
+		--rm -it $(DOCKER_IMG) bash -c \
 		"cp *.$(COPY_EXT) /apt/$(APT_REPO)"
 
 host-image: ## Build Docker image containing the packages for host with given PLATFORM
-	docker build --platform=linux/$(PLATFORM) --tag=$(HOST_IMG) --progress=plain --file host.Dockerfile .
+	docker build --platform=linux/$(PLATFORM) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --tag=$(HOST_IMG) --progress=plain --file host.Dockerfile .
 
 guest-image: ## Build Docker image containing the packages for riscv64 guest
-	docker build --platform=linux/$(PLATFORM) --tag=$(GUEST_IMG) --progress=plain --file guest.Dockerfile .
+	docker build --platform=linux/$(PLATFORM) --build-arg GUEST_BASE_IMG=$(GUEST_BASE_IMG) --tag=$(GUEST_IMG) --progress=plain --file guest.Dockerfile .
 
 update: ## Update APT package list and sign packages
 	$(MAKE) update-apt-repo APT_REPO=$(HOST_APT_REPO)
@@ -58,11 +63,11 @@ add-key: ## Add a new GPG signing public key to APT keyring
 test: test-host-apt	test-guest-apt
 
 test-host-apt: ## Test if remote host APT is working properly for given PLATFORM
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg IMAGE=debian:bookworm-slim --progress=plain --file test-host-apt.Dockerfile .
-	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg IMAGE=ubuntu:24.04 --progress=plain --file test-host-apt.Dockerfile .
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host-apt.Dockerfile .
+	docker build --no-cache --platform=linux/$(PLATFORM) --build-arg APT_URL=$(APT_URL) --build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) --progress=plain --file test-host-apt.Dockerfile .
 
 test-guest-apt: ## Test if remote guest APT is working properly
-	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
+	docker build --no-cache --platform=linux/riscv64 --build-arg APT_URL=$(APT_URL) --build-arg GUEST_BASE_IMG=$(GUEST_BASE_IMG) --build-arg CARTESI_MACHINE_MAJMIN=$(LATEST_CARTESI_MACHINE_MAJMIN) --progress=plain --file test-guest-apt.Dockerfile .
 
 $(APT_PATH)/%:
 	mkdir -p $@
@@ -77,3 +82,5 @@ help: ## Show this help
 		-e 's/:.*##\s*/:/' \
 		-e 's/^\(.\+\):\(.*\)/$(shell tput setaf 6)\1$(shell tput sgr0):\2/' \
 		$(MAKEFILE_LIST) | column -c2 -t -s :
+
+.PHONY: packages host-packages guest-packages copy-host-packages copy-host-packages-source copy-guest-packages copy-image-files host-image guest-image update update-apt-repo add-key test test-host-apt test-guest-apt distclean help

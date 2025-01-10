@@ -1,4 +1,5 @@
-FROM --platform=linux/riscv64 ubuntu:24.04
+ARG GUEST_BASE_IMG
+FROM --platform=linux/riscv64 ${GUEST_BASE_IMG}
 
 ARG CARTESI_MACHINE_MAJMIN=0.0
 ARG APT_URL=https://

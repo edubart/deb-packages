@@ -1,4 +1,5 @@
-FROM ubuntu:24.04 AS toolchain
+ARG GUEST_BASE_IMG=ubuntu
+FROM ${GUEST_BASE_IMG} AS toolchain
 
 # Install build essential
 RUN apt-get update && \
@@ -15,7 +16,7 @@ RUN ./cartesi-machine-guest-tools/build.sh
 
 ########################################
 ## Install and test packages
-FROM --platform=linux/riscv64 ubuntu:24.04
+FROM --platform=linux/riscv64 ${GUEST_BASE_IMG}
 
 WORKDIR /work
 COPY --from=cartesi-machine-guest-tools /work /work

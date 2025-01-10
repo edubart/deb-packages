@@ -1,4 +1,5 @@
-FROM debian:bookworm-20241223-slim AS toolchain
+ARG HOST_BASE_IMG=debian
+FROM ${HOST_BASE_IMG} AS toolchain
 
 # Install build essential
 RUN apt-get update && \
@@ -26,7 +27,7 @@ RUN ./cartesi-machine-rootfs-image/build.sh
 
 ########################################
 ## Install and test packages
-FROM debian:bookworm-20241223-slim
+FROM ${HOST_BASE_IMG}
 
 WORKDIR /work
 COPY --from=cartesi-machine-emulator /work /work
