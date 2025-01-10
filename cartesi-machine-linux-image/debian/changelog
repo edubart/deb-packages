@@ -1,0 +1,5 @@
+cartesi-machine-linux-image (0.20.0-1) UNRELEASED; urgency=low
+
+  * Initial Cartesi Machine guest Linux kernel image release.
+
+ -- root <>  Mon, 06 Jan 2025 18:41:38 +0000

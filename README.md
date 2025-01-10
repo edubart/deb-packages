@@ -2,7 +2,7 @@
 
 This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
 
-All packages binaries are available in the [apt](/tree/apt) branch,
+All packages binaries are available in the [apt](https://github.com/edubart/deb-packages/tree/apt) branch,
 while the scripts to generate them are available in the main branch.
 
 ## Quick start (host)
@@ -111,7 +111,7 @@ make add-key APT_SIGN_EMAIL=my@email.com
 Then you can regenerate an apt package index and sign then with:
 
 ```sh
-make update-apt APT_SIGN_EMAIL=my@email.com
+make update APT_SIGN_EMAIL=my@email.com
 ```
 
 Finally do a git commit and push from `apt` directory.

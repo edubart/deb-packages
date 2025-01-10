@@ -49,59 +49,59 @@ RUN dpkg-buildpackage && \
 
 ########################################
 ## Build guest Linux package
-FROM toolchain AS cartesi-machine-guest-linux
+FROM toolchain AS cartesi-machine-linux-image
 
-ARG GUEST_LINUX_VER=0.20.0
-ARG GUEST_LINUX_TAG=${GUEST_LINUX_VER}
-ARG GUEST_LINUX_NAME=linux-6.5.13-ctsi-1-v${GUEST_LINUX_TAG}
-ARG GUEST_LINUX_BIN_SHA256SUM=65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947
+ARG LINUX_IMAGE_VER=0.20.0
+ARG LINUX_IMAGE_TAG=${LINUX_IMAGE_VER}
+ARG LINUX_IMAGE_NAME=linux-6.5.13-ctsi-1-v${LINUX_IMAGE_TAG}
+ARG LINUX_IMAGE_BIN_SHA256SUM=65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947
 
 # Download and package sources
-RUN mkdir cartesi-machine-guest-linux-${GUEST_LINUX_VER} && \
-    wget -O cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin https://github.com/cartesi/image-kernel/releases/download/v${GUEST_LINUX_TAG}/${GUEST_LINUX_NAME}.bin && \
-    echo "${GUEST_LINUX_BIN_SHA256SUM} cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin" | sha256sum --check && \
+RUN mkdir cartesi-machine-linux-image-${LINUX_IMAGE_VER} && \
+    wget -O cartesi-machine-linux-image-${LINUX_IMAGE_VER}/linux.bin https://github.com/cartesi/image-kernel/releases/download/v${LINUX_IMAGE_TAG}/${LINUX_IMAGE_NAME}.bin && \
+    echo "${LINUX_IMAGE_BIN_SHA256SUM} cartesi-machine-linux-image-${LINUX_IMAGE_VER}/linux.bin" | sha256sum --check && \
     tar --sort=name \
-        --mtime="@$(stat -c %Y cartesi-machine-guest-linux-${GUEST_LINUX_VER}/linux.bin)" \
+        --mtime="@$(stat -c %Y cartesi-machine-linux-image-${LINUX_IMAGE_VER}/linux.bin)" \
         --owner=0 --group=0 --numeric-owner \
         --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
-        -czf cartesi-machine-guest-linux_${GUEST_LINUX_VER}.orig.tar.gz cartesi-machine-guest-linux-${GUEST_LINUX_VER}
+        -czf cartesi-machine-linux-image_${LINUX_IMAGE_VER}.orig.tar.gz cartesi-machine-linux-image-${LINUX_IMAGE_VER}
 
-WORKDIR /work/cartesi-machine-guest-linux-${GUEST_LINUX_VER}
+WORKDIR /work/cartesi-machine-linux-image-${LINUX_IMAGE_VER}
 
 # Copy Debian package files
-COPY cartesi-machine-guest-linux/debian debian
+COPY cartesi-machine-linux-image/debian debian
 
 # Create Debian package
 RUN dpkg-buildpackage --build=source,all && \
-    rm -rf /work/cartesi-machine-guest-linux-${GUEST_LINUX_VER}
+    rm -rf /work/cartesi-machine-linux-image-${LINUX_IMAGE_VER}
 
 ########################################
-## Build guest rootfs package
-FROM toolchain AS cartesi-machine-guest-rootfs
+## Build rootfs image package
+FROM toolchain AS cartesi-machine-rootfs-image
 
-ARG GUEST_ROOTFS_VER=0.16.2
-ARG GUEST_ROOTFS_TAG=${GUEST_ROOTFS_VER}-test2
-ARG GUEST_ROOTFS_NAME=rootfs-tools-v${GUEST_ROOTFS_TAG}
-ARG GUEST_ROOTFS_BIN_SHA256SUM=7d73e6298f9b7bafec1cfcb4923f1d9c80b33816cc9ecd00faac8c6d1e949679
+ARG ROOTFS_IMAGE_VER=0.16.2
+ARG ROOTFS_IMAGE_TAG=${ROOTFS_IMAGE_VER}-test2
+ARG ROOTFS_IMAGE_NAME=rootfs-tools-v${ROOTFS_IMAGE_TAG}
+ARG ROOTFS_IMAGE_BIN_SHA256SUM=7d73e6298f9b7bafec1cfcb4923f1d9c80b33816cc9ecd00faac8c6d1e949679
 
 # Download and package sources
-RUN mkdir cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER} && \
-    wget -O cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2 https://github.com/cartesi/machine-emulator-tools/releases/download/v${GUEST_ROOTFS_TAG}/${GUEST_ROOTFS_NAME}.ext2 && \
-    echo "${GUEST_ROOTFS_BIN_SHA256SUM} cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2" | sha256sum --check && \
+RUN mkdir cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER} && \
+    wget -O cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}/rootfs.ext2 https://github.com/cartesi/machine-emulator-tools/releases/download/v${ROOTFS_IMAGE_TAG}/${ROOTFS_IMAGE_NAME}.ext2 && \
+    echo "${ROOTFS_IMAGE_BIN_SHA256SUM} cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}/rootfs.ext2" | sha256sum --check && \
     tar --sort=name \
-        --mtime="@$(stat -c %Y cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}/rootfs.ext2)" \
+        --mtime="@$(stat -c %Y cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}/rootfs.ext2)" \
         --owner=0 --group=0 --numeric-owner \
         --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
-        -czf cartesi-machine-guest-rootfs_${GUEST_ROOTFS_VER}.orig.tar.gz cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
+        -czf cartesi-machine-rootfs-image_${ROOTFS_IMAGE_VER}.orig.tar.gz cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}
 
-WORKDIR /work/cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
+WORKDIR /work/cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}
 
 # Copy Debian package files
-COPY cartesi-machine-guest-rootfs/debian debian
+COPY cartesi-machine-rootfs-image/debian debian
 
 # Create Debian package
 RUN dpkg-buildpackage --build=source,all && \
-    rm -rf /work/cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
+    rm -rf /work/cartesi-machine-rootfs-image-${ROOTFS_IMAGE_VER}
 
 ########################################
 ## Install and test packages
@@ -109,8 +109,8 @@ FROM debian:bookworm-20241223-slim
 
 WORKDIR /work
 COPY --from=cartesi-machine-emulator /work /work
-COPY --from=cartesi-machine-guest-linux /work /work
-COPY --from=cartesi-machine-guest-rootfs /work /work
+COPY --from=cartesi-machine-linux-image /work /work
+COPY --from=cartesi-machine-rootfs-image /work /work
 
 # Test installing all deb packages
 RUN apt-get update && apt-get install -fy $(find . -name '*.deb')

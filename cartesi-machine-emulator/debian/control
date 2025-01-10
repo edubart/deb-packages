@@ -39,6 +39,6 @@ Architecture: any
 Multi-Arch: same
 Depends:
  cartesi-machine-emulator,
- cartesi-machine-guest-rootfs,
- cartesi-machine-guest-linux,
+ cartesi-machine-rootfs-image,
+ cartesi-machine-linux-image,
 Description: Cartesi Machine (meta-package)

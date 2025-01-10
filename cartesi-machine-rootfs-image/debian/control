@@ -1,0 +1,16 @@
+Source: cartesi-machine-rootfs-image
+Section: otherosfs
+Priority: optional
+Maintainer: Cartesi Machine Reference Unit
+Homepage: https://github.com/cartesi/machine-emulator-tools
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/cartesi-machine-rootfs-image.git
+#Vcs-Browser: https://salsa.debian.org/debian/cartesi-machine-rootfs-image
+
+Package: cartesi-machine-rootfs-image
+Architecture: all
+Multi-Arch: foreign
+Description: Cartesi Machine guest root filesystem image

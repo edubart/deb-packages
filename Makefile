@@ -37,7 +37,7 @@ host-image: ## Build Docker image containing the packages for host with given PL
 guest-image: ## Build Docker image containing the packages for riscv64 guest
 	docker build --platform=linux/$(PLATFORM) --tag=$(GUEST_IMG) --progress=plain --file guest.Dockerfile .
 
-update-apt: ## Update APT package list and sign packages
+update: ## Update APT package list and sign packages
 	$(MAKE) update-apt-repo APT_REPO=$(HOST_APT_REPO)
 	$(MAKE) update-apt-repo APT_REPO=$(GUEST_APT_REPO)
 
