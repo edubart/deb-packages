@@ -1,23 +1,21 @@
 # Cartesi deb packages
 
-This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software to be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble)
-using an APT package manager.
+This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
 
 All packages binaries are available in the [apt](/tree/apt) branch,
 while the scripts to generate them are available in the main branch.
 
+## Quick start (host)
+
+Packages provided by this repository can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble) for both *amd64* and *arm64* architectures using an APT package manager.
 Here is a quick example on how to use it:
 
 ```sh
-# Install required tools
-apt-get update
-apt-get install -y --no-install-recommends wget gpg sudo ca-certificates apt-transport-https
-
-# Install the signing key to verify downloaded packages
+# Install the GPG key to verify repository packages
 wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
 # Create file with repository information
-echo "deb https://edubart.github.io/deb-packages host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+echo "deb https://edubart.github.io/deb-packages ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
 
 # Update list of available packages
 sudo apt-get update
@@ -27,6 +25,25 @@ sudo apt-get install -y --no-install-recommends cartesi-machine
 
 # Test cartesi-machine by booting Linux and exiting
 cartesi-machine
+```
+
+## Quick start (guest)
+
+Packages provided by this repository can be installed on **Ubuntu 24.04** (Noble) for *riscv64* guest architecture using an APT package manager.
+Here is a quick example on how to use it:
+
+```sh
+# Install the GPG key to verify repository packages
+wget -qO - https://edubart.github.io/deb-packages/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+
+# Create file with repository information
+echo "deb https://edubart.github.io/deb-packages ./${CARTESI_MACHINE_MAJMIN}-guest/stable/" | tee /etc/apt/sources.list.d/cartesi-archive-keyring.list
+
+# Update list of available packages
+apt-get update
+
+# Install cartesi-machine-guest-tools
+apt-get install -y --no-install-recommends cartesi-machine-guest-tools
 ```
 
 ## Building

@@ -13,7 +13,4 @@ Rules-Requires-Root: no
 Package: cartesi-machine-guest-rootfs
 Architecture: all
 Multi-Arch: foreign
-Depends:
- ${misc:Depends},
- ${shlibs:Depends},
 Description: Cartesi Machine guest root filesystem

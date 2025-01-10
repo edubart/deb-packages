@@ -22,7 +22,7 @@ Depends:
  ${shlibs:Depends},
  lua5.4,
  libslirp0,
-Description: Cartesi Machine RISC-V system emulator
+Description: Cartesi Machine emulator for RISC-V Linux systems
 
 Package: cartesi-machine-emulator-dev
 Section: libdevel
@@ -32,15 +32,13 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  libslirp-dev,
-Description: Cartesi Machine development files
+Description: Cartesi Machine emulator development files
 
 Package: cartesi-machine
 Architecture: any
 Multi-Arch: same
 Depends:
- ${misc:Depends},
- ${shlibs:Depends},
  cartesi-machine-emulator,
  cartesi-machine-guest-rootfs,
  cartesi-machine-guest-linux,
-Description: Cartesi Machine metapackage
+Description: Cartesi Machine (meta-package)

@@ -7,6 +7,9 @@ RUN apt-get update && \
 
 WORKDIR /work
 
+# Compress .tar.gz files better
+ENV GZIP_OPT=-9
+
 ########################################
 ## Build emulator package
 FROM toolchain AS cartesi-machine-emulator
@@ -101,7 +104,7 @@ RUN dpkg-buildpackage --build=source,all && \
     rm -rf /work/cartesi-machine-guest-rootfs-${GUEST_ROOTFS_VER}
 
 ########################################
-## Install and test package
+## Install and test packages
 FROM debian:bookworm-20241223-slim
 
 # Always test on an updated system

@@ -1,5 +1,5 @@
 cartesi-machine-guest-rootfs (0.16.2-1) UNRELEASED; urgency=low
 
-  * Initial Cartesi Machine guest root filesystem release for Debian.
+  * Initial Cartesi Machine guest root filesystem release.
 
  -- root <>  Mon, 06 Jan 2025 18:41:38 +0000

@@ -1,0 +1,5 @@
+cartesi-machine-guest-tools (0.16.1-1) UNRELEASED; urgency=low
+
+  * Initial Cartesi Machine guest tools release.
+
+ -- root <>  Mon, 06 Jan 2025 18:41:38 +0000

@@ -1,0 +1,38 @@
+Source: cartesi-machine-guest-tools
+Section: utils
+Priority: optional
+Maintainer: Cartesi Machine Reference Unit
+Homepage: https://github.com/cartesi/machine-emulator-tools
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/cartesi-machine-guest-tools.git
+#Vcs-Browser: https://salsa.debian.org/debian/cartesi-machine-guest-tools
+
+Package: cartesi-machine-guest-tools
+Architecture: riscv64
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ busybox-static,
+Description: Cartesi Machine guest tools
+
+Package: cartesi-machine-guest-libcmt
+Section: libs
+Architecture: riscv64
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Cartesi Machine guest libcmt
+
+Package: cartesi-machine-guest-libcmt-dev
+Section: libdevel
+Architecture: riscv64
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: Cartesi Machine guest libcmt development files
