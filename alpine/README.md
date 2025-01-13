@@ -52,7 +52,7 @@ If you would like to contribute to a package addition or update, clone first:
 
 ```sh
 git clone git@github.com:edubart/linux-packages.git
-cd linux-packages/apk
+cd linux-packages/alpine
 ```
 
 You can check for all possible developing make targets with `make help`.
@@ -76,7 +76,7 @@ When finished the packages will be available in the `../cdn/apk` directory.
 First make sure you have signature key set up and the builder image for the architecture you want to build:
 
 ```sh
-make abuild-key
+make key
 make image TARGET_ARCH=riscv64
 ```
 
@@ -104,5 +104,5 @@ This will install all packages for all architectures, and run some very basic te
 Sometimes to develop a new package build script, it's useful to have a shell to test things:
 
 ```sh
-make image-shell TARGET_ARCH=riscv64
+make shell TARGET_ARCH=riscv64
 ```

@@ -1,10 +1,10 @@
 #!/usr/bin/make -f
 
 # Link GCC and libstdc++ statically, so the shared libraries is more portable across distributions
-export DEB_LDFLAGS_MAINT_APPEND=-static-libgcc -static-libstdc++
+DEB_LDFLAGS_MAINT_APPEND+=-static-libgcc -static-libstdc++
 
 # Skip tests
-export DEB_BUILD_OPTIONS=nocheck
+DEB_BUILD_OPTIONS+=nocheck
 
 %:
 	dh $@

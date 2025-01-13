@@ -2,20 +2,20 @@
 
 This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
 
-All packages binaries are available in the [cdn](https://github.com/edubart/linux-packages/tree/cdn) branch,
+All packages binaries are available in the [cdn](https://github.com/edubart/linux-packages/tree/cdn) branch in the `deb` directory,
 while the scripts to generate them are available in the main branch.
 
-## Quick start (host)
+## Quick start
 
-Packages provided by this repository can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble) for both *amd64* and *arm64* architectures using an APT package manager.
+Packages provided by this repository can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble) for *amd64*/*arm64*/*riscv64*` architectures using an APT package manager.
 Here is a quick example on how to use it:
 
 ```sh
 # Install key to verify signature of repository packages
-wget -qO - https://edubart.github.io/linux-packages/apt/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
+wget -qO - https://edubart.github.io/linux-packages/apt/keys/cartesi-deb-key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-deb-key.gpg
 
 # Add repository
-echo "deb https://edubart.github.io/linux-packages/apt ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-host.list
+echo "deb https://edubart.github.io/linux-packages/apt ./stable/" | sudo tee /etc/apt/sources.list.d/cartesi-deb-apt.list
 
 # Update list of available packages
 sudo apt-get update
@@ -27,25 +27,6 @@ sudo apt-get install -y cartesi-machine
 cartesi-machine
 ```
 
-## Quick start (guest)
-
-Packages provided by this repository can be installed on **Ubuntu 24.04** (Noble) for *riscv64* guest architecture using an APT package manager.
-Here is a quick example on how to use it using:
-
-```sh
-# Install the GPG key to verify repository packages
-wget -qO - https://edubart.github.io/linux-packages/apt/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
-
-# Create file with repository information
-echo "deb https://edubart.github.io/linux-packages/apt ./0.18-guest/stable/" | tee /etc/apt/sources.list.d/cartesi-guest.list
-
-# Update list of available packages
-apt-get update
-
-# Install cartesi-machine-guest-tools
-apt-get install -y cartesi-machine-guest-tools
-```
-
 ### Guest using Dockerfile
 
 In case you are building a riscv64 guest rootfs with a Dockerfile, it could be installed more simpler, this way:
@@ -53,65 +34,72 @@ In case you are building a riscv64 guest rootfs with a Dockerfile, it could be i
 ```Dockerfile
 FROM --platform=linux/riscv64 ubuntu:24.04
 
-# Add cartesi repository
-ADD --chmod=644 https://edubart.github.io/linux-packages/apt/KEY.gpg.bin /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
-ADD --chmod=644 https://edubart.github.io/linux-packages/apt/0.18-guest/stable/sources.list /etc/apt/sources.list.d/cartesi-guest.list
-
 # Install guest tools
 RUN apt-get update && \
-    apt-get install -y ca-certificates && \
-    apt-get update && \
+    apt-get install -y ca-certificates
+ADD --chmod=644 https://edubart.github.io/linux-packages/apt/keys/cartesi-deb-key.gpg.bin /etc/apt/trusted.gpg.d/cartesi-deb-key.gpg
+ADD --chmod=644 https://edubart.github.io/linux-packages/apt/stable/sources.list /etc/apt/sources.list.d/cartesi-deb-apt.list
+RUN apt-get update &&
     apt-get install -y cartesi-machine-guest-tools
 ```
 
-## Building
+## Developing
 
 If you would like to contribute to a package addition or update, clone first:
 
 ```sh
 git clone git@github.com:edubart/linux-packages.git
-cd linux-packages
+cd linux-packages/debian
 ```
 
-Then patch the Package build scripts in `Dockerfile` and related subdirectory.
-Make sure you have Docker and `dpkg` installed in your system, then you can build all packages with:
+You can check for all possible developing make targets with `make help`.
+Make sure you have Docker is installed in your system to run any of them.
+
+### Building packages
+
+You can build all packages with:
 
 ```sh
-make packages
+make all
 ```
 
-This will build all packages for both amd64/arm64 and make them available in the `../cdn/apt` directory.
+In the first time this will generate the Docker image, a new key for signing packages, and build all packages
 
-## Testing
+This may take a while (hours) when building packages from scratch.
+When finished the packages will be available in the `../cdn/apk` directory.
 
-You can test if the APT is working properly for both host and guest with:
+### Building a single package
+
+First make sure you have signature key set up and the builder image for the architecture you want to build:
+
+```sh
+make key
+make image TARGET_ARCH=riscv64
+```
+
+Now add or patch the related package build script,
+you can then build it for a specific architecture with:
+
+```sh
+make cartesi-machine-emulator.apk TARGET_ARCH=riscv64
+```
+
+In this case it will build the `cartesi-machine-emulator` package for `riscv64`.
+
+### Testing
+
+You can test installing all built packages with:
 
 ```sh
 make test
 ```
 
-## Publishing
+This will install all packages for all architectures, and run some very basic tests to check if it's working.
 
-This is only relevant for maintainers of this repository,
-in case you need to update listing of APT packages.
+### Debugging
 
-First make sure to have `cdn` branch cloned in top level directory by doing:
-
-```sh
-git worktree add cdn -b cdn origin/cdn
-```
-
-Having a GPG for given email already set in the environment,
-every developer must at least once add it to the keyring, with:
+Sometimes to develop a new package build script, it's useful to have a shell to test things:
 
 ```sh
-make add-key APT_SIGN_EMAIL=my@email.com
+make shell TARGET_ARCH=riscv64
 ```
-
-Then you can regenerate an apt package index and sign then with:
-
-```sh
-make update APT_SIGN_EMAIL=my@email.com
-```
-
-Finally do a git commit and push from `cdn` directory.

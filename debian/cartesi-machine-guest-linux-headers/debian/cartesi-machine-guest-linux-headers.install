@@ -1,0 +1,11 @@
+asm usr/include/asm
+asm-generic usr/include/asm-generic
+drm usr/include/drm
+linux usr/include/linux
+misc usr/include/misc
+mtd usr/include/mtd
+rdma usr/include/rdma
+scsi usr/include/scsi
+sound usr/include/sound
+video usr/include/video
+xen usr/include/xen

@@ -1,0 +1,16 @@
+Source: cartesi-machine-guest-linux-headers
+Section: otherosfs
+Priority: optional
+Maintainer: Cartesi Machine Reference Unit
+Homepage: https://github.com/cartesi/image-kernel
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/cartesi-machine-guest-linux-headers.git
+#Vcs-Browser: https://salsa.debian.org/debian/cartesi-machine-guest-linux-headers
+
+Package: cartesi-machine-guest-linux-headers
+Architecture: all
+Multi-Arch: foreign
+Description: Cartesi Machine guest Linux kernel headers

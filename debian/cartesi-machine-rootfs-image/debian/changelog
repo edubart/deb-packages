@@ -1,5 +1,5 @@
-cartesi-machine-rootfs-image (0.16.2-1) UNRELEASED; urgency=low
+cartesi-machine-rootfs-image (0.16.2-1) RELEASED; urgency=low
 
   * Initial Cartesi Machine guest root filesystem image release.
 
- -- root <>  Mon, 06 Jan 2025 18:41:38 +0000
+ -- Cartesi Deb Builder <cartesi-deb-builder@builder>  Mon, 06 Jan 2025 18:41:38 +0000
