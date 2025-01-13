@@ -38,12 +38,10 @@ FROM --platform=linux/riscv64 alpine:latest
 # Install guest tools
 ADD --chmod=644 https://edubart.github.io/linux-packages/apk/keys/cartesi-apk-key.rsa.pub /etc/apk/keys/cartesi-apk-key.rsa.pub
 RUN echo "https://edubart.github.io/linux-packages/apk/stable" >> /etc/apk/repositories
-RUN apk update && \
-    apk add cartesi-machine-guest-tools
+RUN apk update && apk add cartesi-machine-guest-tools
 
 # Remove unneeded packages to shrink image
-RUN apk del --purge apk-tools alpine-release alpine-keys ca-certificates-bundle libc-utils && \
-    rm -rf /var/cache/apk /etc/apk
+RUN apk del --purge apk-tools alpine-release alpine-keys ca-certificates-bundle libc-utils && rm -rf /var/cache/apk /etc/apk
 ```
 
 ## Developing

@@ -35,12 +35,10 @@ In case you are building a riscv64 guest rootfs with a Dockerfile, it could be i
 FROM --platform=linux/riscv64 ubuntu:24.04
 
 # Install guest tools
-RUN apt-get update && \
-    apt-get install -y ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates
 ADD --chmod=644 https://edubart.github.io/linux-packages/apt/keys/cartesi-deb-key.gpg.bin /etc/apt/trusted.gpg.d/cartesi-deb-key.gpg
 ADD --chmod=644 https://edubart.github.io/linux-packages/apt/stable/sources.list /etc/apt/sources.list.d/cartesi-deb-apt.list
-RUN apt-get update &&
-    apt-get install -y cartesi-machine-guest-tools
+RUN apt-get update && apt-get install -y cartesi-machine-guest-tools
 ```
 
 ## Developing
