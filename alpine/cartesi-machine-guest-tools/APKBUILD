@@ -19,6 +19,8 @@ export TOOLCHAIN_PREFIX=
 
 prepare() {
     cd "$_builddir"
+
+    # cttyhack is not available in Alpine, but we can workaround with setsid -c
     sed -i -e '/busybox cttyhack/d' -e 's/setsid/setsid -c/' sys-utils/cartesi-init/cartesi-init
 }
 

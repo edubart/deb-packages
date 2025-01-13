@@ -11,10 +11,10 @@ Packages provided by this repository can be installed on **Debian 12** (Bookworm
 Here is a quick example on how to use it:
 
 ```sh
-# Install the GPG key to verify repository packages
+# Install key to verify signature of repository packages
 wget -qO - https://edubart.github.io/linux-packages/apt/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 
-# Create file with repository information
+# Add repository
 echo "deb https://edubart.github.io/linux-packages/apt ./host/stable/" | sudo tee /etc/apt/sources.list.d/cartesi-host.list
 
 # Update list of available packages
@@ -23,7 +23,7 @@ sudo apt-get update
 # Install cartesi-machine
 sudo apt-get install -y cartesi-machine
 
-# Test cartesi-machine by booting Linux and exiting
+# Test cartesi-machine
 cartesi-machine
 ```
 
@@ -48,12 +48,12 @@ apt-get install -y cartesi-machine-guest-tools
 
 ### Guest using Dockerfile
 
-In case you are building a guest rootfs with a Dockerfile, it could be installed with the need of using `wget` or `gpg`, this way:
+In case you are building a riscv64 guest rootfs with a Dockerfile, it could be installed more simpler, this way:
 
 ```Dockerfile
 FROM --platform=linux/riscv64 ubuntu:24.04
 
-# Add guest apt repository
+# Add cartesi repository
 ADD --chmod=644 https://edubart.github.io/linux-packages/apt/KEY.gpg.bin /etc/apt/trusted.gpg.d/cartesi-archive-keyring.gpg
 ADD --chmod=644 https://edubart.github.io/linux-packages/apt/0.18-guest/stable/sources.list /etc/apt/sources.list.d/cartesi-guest.list
 
