@@ -1,131 +1,110 @@
 # The following variables may need to be updated manually during a new release cycle
-HOST_BASE_IMG=alpine:3.21.2
-GUEST_BASE_IMG=alpine:3.21.2
-LATEST_CARTESI_MACHINE_MAJMIN=0.18
 APK_URL=https://edubart.github.io/linux-packages/apk
 
-# List of all packages to compile inside a guest
-HOST_PACKAGES=\
-cartesi-machine-emulator \
+# Target platform to compile packages for (x86_64/aarch64/riscv64)
+PLATFORM?=$(shell uname -m)
+
+# List of packages to compile for any architecture
+PACKAGES_ANYARCH=\
 cartesi-machine-linux-image \
-cartesi-machine-rootfs-image
+cartesi-machine-rootfs-image \
+cartesi-machine-emulator
 
-# List of all packages to compile inside a guest
-GUEST_PACKAGES=\
+# List of packages to compile for riscv64
+PACKAGES_RISCV64=\
 cartesi-machine-guest-linux-headers \
-cartesi-machine-guest-tools \
-$(HOST_PACKAGES)
+cartesi-machine-guest-tools
 
-HOST_IMG=cartesi/$(HOST_PLATFORM)-apk-packages
-GUEST_IMG=cartesi/riscv64-apk-packages
-HOST_APK_REPO=host/stable/$(HOST_PLATFORM)
-GUEST_APK_REPO=$(LATEST_CARTESI_MACHINE_MAJMIN)-guest/stable
-HOST_PLATFORM?=$(shell uname -m)
-GUEST_PLATFORM=riscv64
-CDN_PATH=$(abspath ../cdn)
-APK_PATH=$(CDN_PATH)/apk
+# APK docker image used for building packages
+BASE_IMAGE=alpine:3.21.2
+IMAGE=cartesi/apk-builder-$(PLATFORM)
 
-GUEST_PACKAGES_TARGETS=$(patsubst %,%.apk-guest,$(GUEST_PACKAGES))
-HOST_PACKAGES_TARGETS=$(patsubst %,%.apk-host,$(HOST_PACKAGES))
+# APK repository path to save built packages
+APK_PATH=$(abspath ../cdn)/apk
+APK_REPO_PATH=$(APK_PATH)/stable
+KEY_NAME=cartesi-apk-key
 
-all: ## Build docker images, then generate a key and finally build all packages
-	@$(MAKE) --no-print-directory host-image
-	@$(MAKE) --no-print-directory guest-image
+# Package list to build
+PACKAGES=$(PACKAGES_ANYARCH)
+ifeq ($(PLATFORM),riscv64)
+PACKAGES+=$(PACKAGES_RISCV64)
+endif
+
+all: ## Generate a key (if needed) and build all packages
+	@$(MAKE) --no-print-directory image
 	@$(MAKE) --no-print-directory abuild-key
-	@$(MAKE) --no-print-directory packages
+	@$(MAKE) --no-print-directory packages-all
 
-packages: host-packages-all guest-packages ## Build host (amd64/arm64) and guest (riscv64) packages
-host-packages-all: ## Build host packages for amd64/arm64 platforms
-	@$(MAKE) --no-print-directory host-packages HOST_PLATFORM=x86_64
-	@$(MAKE) --no-print-directory host-packages HOST_PLATFORM=aarch64
-host-packages: host-image $(HOST_PACKAGES_TARGETS) ## Build host packages for given HOST_PLATFORM
-guest-packages: guest-image $(GUEST_PACKAGES_TARGETS) ## Build guest packages for riscv64
+packages-all: ## Build packages for all platforms (x86_64/aarch64/riscv64)
+	@$(MAKE) --no-print-directory image PLATFORM=x86_64
+	@$(MAKE) --no-print-directory packages PLATFORM=x86_64
+	@$(MAKE) --no-print-directory image PLATFORM=aarch64
+	@$(MAKE) --no-print-directory packages PLATFORM=aarch64
+	@$(MAKE) --no-print-directory image PLATFORM=riscv64
+	@$(MAKE) --no-print-directory packages PLATFORM=riscv64
 
-%.apk-host: $(APK_PATH)/$(HOST_APK_REPO) ## Build a host package
-	@$(MAKE) --no-print-directory host-exec \
+packages: $(patsubst %,%.apk,$(PACKAGES)) ## Build packages for given PLATFORM
+
+%.apk: ## Build a package for given PLATFORM
+	@$(MAKE) --no-print-directory image-exec \
 		COMMAND="cd $* && \
 				 export SOURCE_DATE_EPOCH=\\\`stat -c %Y APKBUILD\\\` && \
 				 abuild -rF && \
 				 chown -R $(shell id -u):$(shell id -g) /root/packages/work"
 
-%.apk-guest: $(APK_PATH)/$(GUEST_APK_REPO) ## Build a guest package
-	@$(MAKE) --no-print-directory guest-exec \
-		COMMAND="cd $* && \
-				 export SOURCE_DATE_EPOCH=\\\`stat -c %Y APKBUILD\\\` && \
-				 abuild -rF && \
-				 chown -R $(shell id -u):$(shell id -g) /root/packages/work"
-
-host-shell: ## Spawn a host image shell
-	@$(MAKE) --no-print-directory host-exec \
+image-shell: ## Spawn an image shell for given PLATFORM
+	@$(MAKE) --no-print-directory image-exec \
 		COMMAND="ash" DOCKER_FLAGS="-it"
 
-guest-shell: ## Spawn a guest image shell
-	@$(MAKE) --no-print-directory guest-exec \
-		COMMAND="ash" DOCKER_FLAGS="-it"
-
-host-exec: ## Execute a COMMAND in a host image for given HOST_PLATFORM
-	docker run --platform=linux/$(HOST_PLATFORM) \
-		--volume $(APK_PATH)/$(HOST_APK_REPO):/root/packages/work \
+image-exec: ## Execute a COMMAND inside an image for given PLATFORM
+	docker run --platform=linux/$(PLATFORM) \
+		--volume $(APK_REPO_PATH):/root/packages/work \
 		--volume ./abuild-key:/abuild-key \
 		--volume .:/work \
 		--workdir /work/$* \
-		$(DOCKER_FLAGS) \
-		--rm $(HOST_IMG) \
+		$(DOCKER_FLAGS) --rm $(IMAGE) \
 		ash -c "cp /abuild-key/*.rsa.pub /etc/apk/keys/ && \
 				cp -a /abuild-key /root/.abuild && \
 				chown -R root:root /root/.abuild && \
 				$(COMMAND)"
 
-guest-exec: ## Execute a COMMAND in guest image (riscv64)
-	docker run --platform=linux/$(GUEST_PLATFORM) \
-		--volume $(APK_PATH)/$(GUEST_APK_REPO):/root/packages/work \
-		--volume ./abuild-key:/abuild-key \
-		--volume .:/work \
-		--workdir /work \
-		--rm $(GUEST_IMG) $(DOCKER_FLAGS) \
-		ash -c "cp /abuild-key/*.rsa.pub /etc/apk/keys/ && \
-				cp -a /abuild-key /root/.abuild && \
-				chown -R root:root /root/.abuild && \
-				$(COMMAND)"
-
-host-image: ## Build Docker image for building host packages for given HOST_PLATFORM
-	docker build --platform=linux/$(HOST_PLATFORM) \
-		--build-arg HOST_BASE_IMG=$(HOST_BASE_IMG) \
-		--tag=$(HOST_IMG) \
+image: ## Build Docker image for building packages for given PLATFORM
+	docker build --platform=linux/$(PLATFORM) \
+		--build-arg=BASE_IMAGE=$(BASE_IMAGE) \
+		--tag=$(IMAGE) \
 		--progress=plain \
-		--file host.Dockerfile .
-
-guest-image: ## Build Docker image for building guest packages for riscv64
-	docker build --platform=linux/$(GUEST_PLATFORM) \
-		--build-arg GUEST_BASE_IMG=$(GUEST_BASE_IMG) \
-		--tag=$(GUEST_IMG) \
-		--progress=plain \
-		--file guest.Dockerfile .
+		--file Dockerfile .
 
 abuild-key: ## Generate package signature key
-	docker run --platform=linux/$(GUEST_PLATFORM) \
+	mkdir -p $(APK_PATH)/keys abuild-key
+	echo "PACKAGER_PRIVKEY=\"/root/.abuild/$(KEY_NAME).rsa\"" > abuild-key/abuild.conf
+	docker run --platform=linux/$(PLATFORM) \
 		--volume ./abuild-key:/root/.abuild \
-		--rm $(GUEST_IMG) \
-		ash -c "abuild-keygen -a -n && chown -R $(shell id -u):$(shell id -g) /root/.abuild"
+		--volume $(APK_PATH):/apk \
+		--rm $(IMAGE) \
+		ash -c "abuild-keygen -n && \
+				mv /root/.abuild/*.rsa.pub /root/.abuild/$(KEY_NAME).rsa.pub && \
+				mv /root/.abuild/*.rsa /root/.abuild/$(KEY_NAME).rsa && \
+				cp /root/.abuild/$(KEY_NAME).rsa.pub /apk/keys/$(KEY_NAME).rsa.pub && \
+				chown -R $(shell id -u):$(shell id -g) /root/.abuild /apk/keys"
 
-test-host: ## Test host packages
-	@$(MAKE) --no-print-directory host-exec \
-		COMMAND="apk add $(HOST_PACKAGES) &&
-				cartesi-machine"
+test: ## Test built packages for all platforms (x86_64/aarch64/riscv64)
+	@$(MAKE) --no-print-directory test-packages PLATFORM=x86_64
+	@$(MAKE) --no-print-directory test-packages PLATFORM=aarch64
+	@$(MAKE) --no-print-directory test-packages PLATFORM=riscv64
 
-test-guest: ## Test guest packages
-	@$(MAKE) --no-print-directory guest-exec \
-		COMMAND="apk add $(GUEST_PACKAGES) && \
-				rollup --help && \
-				rollup-http-server --help \
-				cartesi-machine"
+ifeq ($(PLATFORM),riscv64)
+test-packages:
+	@$(MAKE) --no-print-directory image-exec \
+		COMMAND="apk add $(PACKAGES) && rollup --help && cartesi-machine"
+else
+test-packages: ## Test built packages for given PLATFORM
+	@$(MAKE) --no-print-directory image-exec \
+		COMMAND="apk add $(PACKAGES) && cartesi-machine"
+endif
 
-$(APK_PATH)/%:
-	mkdir -p $@
-
-distclean: ## Remove everything from APK directories
-	rm -rf $(APK_PATH)/host
-	rm -rf $(APK_PATH)/*-guest
+distclean: ## Remove everything from APK repository directory
+	rm -rf $(APK_REPO_PATH)
 
 help: ## Show this help
 	@sed \
@@ -133,3 +112,5 @@ help: ## Show this help
 		-e 's/:.*##\s*/:/' \
 		-e 's/^\(.\+\):\(.*\)/$(shell tput setaf 6)\1$(shell tput sgr0):\2/' \
 		$(MAKEFILE_LIST) | column -c2 -t -s :
+
+.PHONY: all packages-all packages image-shell image-exec image test test-packages distclean help

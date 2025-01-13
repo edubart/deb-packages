@@ -1,5 +1,5 @@
-ARG HOST_BASE_IMG=alpine
-FROM ${HOST_BASE_IMG} AS toolchain
+ARG BASE_IMAGE=alpine
+FROM ${BASE_IMAGE}
 
 # Install build essential
 RUN apk update && \

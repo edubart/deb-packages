@@ -8,37 +8,44 @@ url="https://github.com/cartesi/machine-emulator-tools"
 arch="riscv64"
 license="Apache-2.0"
 depends="busybox"
-makedepends="build-base cargo clang-libclang cartesi-machine-guest-linux-headers"
+makedepends="build-base cartesi-machine-guest-linux-headers cargo clang-libclang"
 options="!check"
 source="machine-emulator-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/refs/tags/v$_pkgver.tar.gz"
 sha256sums="2505eb04e3add262bb6a76453dd47690172efc0ff102a68146b8e9fef35edd9e  machine-emulator-tools-$_pkgver.tar.gz"
 subpackages="cartesi-machine-guest-libcmt:package_libcmt cartesi-machine-guest-libcmt-dev:package_libcmt_dev"
-
+install="$pkgname.pre-install"
 _builddir="$srcdir/machine-emulator-tools-$_pkgver"
 export TOOLCHAIN_PREFIX=
+
+prepare() {
+    cd "$_builddir"
+    sed -i -e '/busybox cttyhack/d' -e 's/setsid/setsid -c/' sys-utils/cartesi-init/cartesi-init
+}
 
 build() {
     cd "$_builddir"
     make -C sys-utils/libcmt
     make -C sys-utils/libcmt install
     make -C sys-utils all
-    # (cd rollup-http/rollup-http-server && cargo build --release)
-    # (cd rollup-http/echo-dapp && cargo build --release)
+
+    (cd rollup-http/rollup-http-server && cargo build --release)
+    (cd rollup-http/echo-dapp && cargo build --release)
 }
 
 package() {
     cd "$_builddir"
-    mkdir -p "$pkgdir/bin" "$pkgdir/sbin"
-    install -Dm755 sys-utils/xhalt/xhalt "$pkgdir/bin/"
-    install -Dm755 sys-utils/yield/yield "$pkgdir/bin/"
-    install -Dm755 sys-utils/hex/hex "$pkgdir/bin/"
-    install -Dm755 sys-utils/rollup/rollup "$pkgdir/bin/"
-    install -Dm755 sys-utils/ioctl-echo-loop/ioctl-echo-loop "$pkgdir/bin/"
-    install -Dm755 sys-utils/misc/* "$pkgdir/bin/"
-    install -Dm755 sys-utils/cartesi-init/cartesi-init "$pkgdir/sbin/"
-    # install -Dm755 rollup-http/rollup-http-server/target/release/rollup-http-server "$pkgdir/bin/"
-    # install -Dm755 rollup-http/echo-dapp/target/release/echo-dapp "$pkgdir/bin/"
-    # install -Dm755 rollup-http/rollup-init/rollup-init "$pkgdir/bin/"
+    mkdir -p "$pkgdir/usr/bin" "$pkgdir/usr/sbin"
+    install -Dm755 sys-utils/xhalt/xhalt "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/yield/yield "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/hex/hex "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/rollup/rollup "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/ioctl-echo-loop/ioctl-echo-loop "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/misc/* "$pkgdir/usr/bin/"
+    install -Dm755 sys-utils/cartesi-init/cartesi-init "$pkgdir/usr/sbin/"
+
+    install -Dm755 rollup-http/rollup-http-server/target/release/rollup-http-server "$pkgdir/usr/bin/"
+    install -Dm755 rollup-http/echo-dapp/target/release/echo-dapp "$pkgdir/usr/bin/"
+    install -Dm755 rollup-http/rollup-init/rollup-init "$pkgdir/usr/bin/"
 }
 
 package_libcmt() {
