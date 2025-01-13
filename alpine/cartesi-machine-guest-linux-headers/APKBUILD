@@ -1,0 +1,17 @@
+# Maintainer: Eduardo Bart <edub4rt@gmail.com>
+pkgname=cartesi-machine-guest-linux-headers
+pkgver=0.20.0
+_linuxver=6.5.13-ctsi-1
+pkgrel=1
+pkgdesc="Cartesi Machine guest Linux kernel headers"
+url="https://github.com/cartesi/image-kernel"
+arch="noarch"
+license="GPL-2.0"
+options="!check"
+source="linux-headers.tar.xz::https://github.com/cartesi/image-kernel/releases/download/v$pkgver/linux-headers-$_linuxver-v$pkgver.tar.xz"
+sha256sums="4a4714bfa8c0028cb443db2036fad4f8da07065c1cb4ac8e0921a259fddd731b  linux-headers.tar.xz"
+
+package() {
+    mkdir -p "$pkgdir/usr"
+    cp -r "$srcdir/include" "$pkgdir/usr/include"
+}
