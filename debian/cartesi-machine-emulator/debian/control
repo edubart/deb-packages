@@ -5,7 +5,7 @@ Maintainer: Cartesi Machine Reference Unit
 Homepage: https://github.com/cartesi/machine-emulator
 Build-Depends:
  debhelper-compat (= 13),
- libboost1.81-dev,
+ libboost1.83-dev | libboost1.81-dev,
  liblua5.4-dev,
  libslirp-dev,
  pkg-config,

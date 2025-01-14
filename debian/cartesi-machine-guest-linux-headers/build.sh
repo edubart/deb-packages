@@ -39,7 +39,7 @@ export SOURCE_DATE_EPOCH=$(stat -c %Y ../build.sh) DEB_BUILD_OPTIONS="reproducib
 touch -r ../build.sh **/**
 
 # Package
-dpkg-buildpackage --unsigned-source --build=source,all
+dpkg-buildpackage --build=source,all
 
 # Update repository
 mv ../*.{deb,orig.tar.xz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/

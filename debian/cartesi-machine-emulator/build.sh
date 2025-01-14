@@ -37,9 +37,6 @@ ${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
 EOF
 mv ../add-generated-files.diff debian/patches/
 cp -a COPYING debian/copyright
-if grep Ubuntu /etc/issue > /dev/null; then
-    sed -i 's/libboost1.81/libboost1.83/' debian/control
-fi
 patch -Np1 < debian/patches/add-generated-files.diff
 
 # Ensure reproducibility
@@ -48,7 +45,7 @@ touch -r ../build.sh **/**
 
 # Package
 apt-get build-dep --no-install-recommends -y .
-dpkg-buildpackage --unsigned-source
+dpkg-buildpackage
 
 # Update repository
 mv ../*.{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
