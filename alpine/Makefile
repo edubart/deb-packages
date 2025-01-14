@@ -50,6 +50,7 @@ packages: $(patsubst %,%.apk,$(PACKAGES)) ## Build packages for given TARGET_ARC
     chown -R $(shell id -u):$(shell id -g) /root/packages/work"
 
 key: ## Generate package signature key
+	echo "NOTICE: Generating new key!"
 	@mkdir -p $(REPO_PATH)/keys key
 	docker run --platform=linux/$(TARGET_ARCH) \
 		--volume ./key:/root/.abuild \

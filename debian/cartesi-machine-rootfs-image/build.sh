@@ -47,5 +47,5 @@ touch -r ../build.sh **/**
 dpkg-buildpackage --unsigned-source --unsigned-changes --build=source,all
 
 # Update repository
-mv ../*.{deb,orig.tar.gz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
+mv ../*.{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
 /work/gen-index.sh

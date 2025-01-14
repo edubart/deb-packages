@@ -4,7 +4,6 @@ set -e
 pkgname=cartesi-machine-guest-linux-headers
 pkgver=0.20.0
 pkgrel=1
-_pkgver=${pkgver}
 _linuxver=6.5.13-ctsi-1
 sources=("${pkgname}_${pkgver}.orig.tar.xz::https://github.com/cartesi/image-kernel/releases/download/v$pkgver/linux-headers-$_linuxver-v$pkgver.tar.xz")
 sha256sums="4a4714bfa8c0028cb443db2036fad4f8da07065c1cb4ac8e0921a259fddd731b  ${pkgname}_${pkgver}.orig.tar.xz"
@@ -43,5 +42,5 @@ touch -r ../build.sh **/**
 dpkg-buildpackage --unsigned-source --unsigned-changes --build=source,all
 
 # Update repository
-mv ../*.{deb,orig.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
+mv ../*.{deb,orig.tar.xz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
 /work/gen-index.sh

@@ -4,9 +4,8 @@ set -e
 pkgname=cartesi-machine-linux-image
 pkgver=0.20.0
 pkgrel=1
-_pkgver=${pkgver}
 _linuxver=6.5.13-ctsi-1
-sources=("linux.bin::https://github.com/cartesi/image-kernel/releases/download/v${_pkgver}/linux-$_linuxver-v$pkgver.bin")
+sources=("linux.bin::https://github.com/cartesi/image-kernel/releases/download/v${pkgver}/linux-$_linuxver-v$pkgver.bin")
 sha256sums="65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947 linux.bin"
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_all.deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
@@ -48,5 +47,5 @@ touch -r ../build.sh **/**
 dpkg-buildpackage --unsigned-source --unsigned-changes --build=source,all
 
 # Update repository
-mv ../*.{deb,orig.tar.gz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
+mv ../*.{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
 /work/gen-index.sh

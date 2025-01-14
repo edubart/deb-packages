@@ -1,8 +1,8 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-guest-linux-headers
 pkgver=0.20.0
-_linuxver=6.5.13-ctsi-1
 pkgrel=1
+_linuxver=6.5.13-ctsi-1
 pkgdesc="Cartesi Machine guest Linux kernel headers"
 url="https://github.com/cartesi/image-kernel"
 arch="riscv64"

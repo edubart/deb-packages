@@ -63,6 +63,7 @@ packages: $(patsubst %,%.deb,$(PACKAGES)) ## Build packages for given TARGET_ARC
 	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
 
 key: ## Generate package signature key
+	echo "NOTICE: Generating new key!"
 	@mkdir -p $(REPO_PATH)/keys key
 	@$(MAKE) --no-print-directory exec COMMAND="\
 	gpg --batch --gen-key </work/gen-key-batch.txt && \
@@ -128,4 +129,4 @@ help: ## Show this help
 		-e 's/^\(.\+\):\(.*\)/$(shell tput setaf 6)\1$(shell tput sgr0):\2/' \
 		$(MAKEFILE_LIST) | column -c2 -t -s :
 
-.PHONY: all packages-all packages shell key index exec image test test-packages distclean help
+.PHONY: all packages-all packages shell index exec image test test-packages distclean help

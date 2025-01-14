@@ -1,8 +1,8 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-emulator
 pkgver=0.18.2
-_pkgver=$pkgver-test1
 pkgrel=1
+_pkgver=$pkgver-test1
 pkgdesc="Cartesi Machine emulator for RISC-V Linux systems"
 url="https://github.com/cartesi/machine-emulator"
 arch="all"
@@ -25,6 +25,7 @@ prepare() {
 
 build() {
     cd "$_builddir"
+    export LDFLAGS="-static-libgcc -static-libstdc++"
     make
 }
 
