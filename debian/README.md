@@ -12,7 +12,7 @@ Here is a quick example on how to use it:
 
 ```sh
 # Install key to verify signature of repository packages
-wget -qO - https://edubart.github.io/linux-packages/apt/keys/cartesi-deb-key | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-deb-key.gpg
+wget -qO - https://edubart.github.io/linux-packages/apt/keys/cartesi-deb-key.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/cartesi-deb-key.gpg
 
 # Add repository
 echo "deb https://edubart.github.io/linux-packages/apt ./stable/" | sudo tee /etc/apt/sources.list.d/cartesi-deb-apt.list
