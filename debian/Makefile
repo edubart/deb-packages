@@ -16,9 +16,9 @@ cartesi-machine-guest-tools
 TARGET_ARCH=$(shell dpkg --print-architecture)
 
 # Docker base images used for building packages
-BASE_IMAGE_amd64=debian:bookworm-20241223-slim
-BASE_IMAGE_arm64=debian:bookworm-20241223-slim
-BASE_IMAGE_riscv64=ubuntu:noble-20241118.1
+BASE_IMAGE_amd64=debian:bookworm-slim
+BASE_IMAGE_arm64=debian:bookworm-slim
+BASE_IMAGE_riscv64=ubuntu:noble
 BASE_IMAGE=$(BASE_IMAGE_$(TARGET_ARCH))
 IMAGE=cartesi/deb-builder-$(TARGET_ARCH)
 
@@ -59,7 +59,7 @@ packages: $(patsubst %,%.deb,$(PACKAGES)) ## Build packages for given TARGET_ARC
 	mkdir -p /builder/$* && \
  	cd /builder/$* && \
 	cp -a /work/$*/* . && \
-	REPO_NAME=$(REPO_NAME) ./build.sh && \
+	REPO_NAME=$(REPO_NAME) REPO_URL=$(REPO_URL) ./build.sh && \
 	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
 
 key: ## Generate package signature key
@@ -74,7 +74,7 @@ key: ## Generate package signature key
 index: ## Generate package index
 	@mkdir -p $(REPO_PATH)/$(REPO_NAME)
 	@$(MAKE) --no-print-directory exec COMMAND="\
-	REPO_NAME=$(REPO_NAME) /work/gen-index.sh && \
+	REPO_NAME=$(REPO_NAME) REPO_URL=$(REPO_URL) /work/gen-index.sh && \
 	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
 
 shell: ## Spawn an image shell for given TARGET_ARCH

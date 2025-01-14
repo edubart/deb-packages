@@ -13,7 +13,7 @@ cartesi-machine-guest-tools
 TARGET_ARCH?=$(shell uname -m)
 
 # Docker base image used for building packages
-BASE_IMAGE=alpine:3.21.2
+BASE_IMAGE=alpine:3.21
 IMAGE=cartesi/apk-builder-$(TARGET_ARCH)
 
 # Repository path to save built packages

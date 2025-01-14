@@ -3,6 +3,7 @@ FROM ${BASE_IMAGE}
 
 # Install build essential
 RUN apk update && \
+    apk upgrade && \
     apk add alpine-sdk
 
 # List local apk repository
