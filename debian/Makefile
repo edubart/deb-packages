@@ -59,10 +59,8 @@ packages: $(patsubst %,%.deb,$(PACKAGES)) ## Build packages for given TARGET_ARC
 	mkdir -p /builder/$* && \
  	cd /builder/$* && \
 	cp -a /work/$*/* . && \
-	./build.sh && \
-	cp *.{deb,orig.tar.*,debian.tar.xz,dsc,buildinfo,changes} /apt/$(REPO_NAME)/ && \
+	REPO_NAME=$(REPO_NAME) ./build.sh && \
 	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
-	@$(MAKE) --no-print-directory index
 
 key: ## Generate package signature key
 	@mkdir -p $(REPO_PATH)/keys key
@@ -75,14 +73,8 @@ key: ## Generate package signature key
 index: ## Generate package index
 	@mkdir -p $(REPO_PATH)/$(REPO_NAME)
 	@$(MAKE) --no-print-directory exec COMMAND="\
-	cd /apt && \
-	dpkg-scanpackages --multiversion $(REPO_NAME) > $(REPO_NAME)/Packages && \
-	gzip -k -f /apt/$(REPO_NAME)/Packages && \
-	cd /apt && apt-ftparchive release $(REPO_NAME) > $(REPO_NAME)/Release && \
-	gpg -abs -o - /apt/$(REPO_NAME)/Release > /apt/$(REPO_NAME)/Release.gpg && \
-	gpg --clearsign -o - /apt/$(REPO_NAME)/Release > /apt/$(REPO_NAME)/InRelease && \
-	echo 'deb $(REPO_URL) ./$(REPO_NAME)/' > /apt/$(REPO_NAME)/sources.list && \
-	chown -R $(shell id -u):$(shell id -g) /apt"
+	REPO_NAME=$(REPO_NAME) /work/gen-index.sh && \
+	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
 
 shell: ## Spawn an image shell for given TARGET_ARCH
 	@$(MAKE) --no-print-directory DOCKER_FLAGS="-it" exec COMMAND="bash"

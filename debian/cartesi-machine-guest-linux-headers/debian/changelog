@@ -1,5 +1,0 @@
-cartesi-machine-guest-linux-headers (0.20.0-1) RELEASED; urgency=low
-
-  * Initial Cartesi Machine guest Linux kernel headers release.
-
- -- Cartesi Deb Builder <cartesi-deb-builder@builder>  Mon, 06 Jan 2025 18:41:38 +0000

@@ -3,10 +3,18 @@ set -e
 
 pkgname=cartesi-machine-linux-image
 pkgver=0.20.0
+pkgrel=1
 _pkgver=${pkgver}
 _linuxver=6.5.13-ctsi-1
 sources=("linux.bin::https://github.com/cartesi/image-kernel/releases/download/v${_pkgver}/linux-$_linuxver-v$pkgver.bin")
 sha256sums="65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947 linux.bin"
+pkgdeb=${pkgname}_${pkgver}-${pkgrel}_all.deb
+pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
+
+# Maybe skip build
+if [ "$(find . -type f -printf '%T@\n' | sort -n | tail -1 | cut -d. -f1)" -lt "$(stat -c %Y /apt/${REPO_NAME}/${pkgdeb})" ]; then
+    echo "${pkgname}: Package is up to date"; exit 0
+fi
 
 # Download
 for f in ${sources[*]}; do wget -O $(echo $f | sed 's/::/ /'); done
@@ -24,6 +32,21 @@ cd ${pkgname}-${pkgver}
 
 # Patch
 mv ../debian debian
+cat <<EOF > debian/changelog
+${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
+
+  * Please read the project sources for release change logs.
+
+ -- ${pkgsigner}  $(date -R -u)
+EOF
+
+# Ensure reproducibility
+export SOURCE_DATE_EPOCH=$(stat -c %Y ../build.sh) DEB_BUILD_OPTIONS="reproducible=+all"
+touch -r ../build.sh **/**
 
 # Package
-dpkg-buildpackage --build=source,all
+dpkg-buildpackage --unsigned-source --unsigned-changes --build=source,all
+
+# Update repository
+mv ../*.{deb,orig.tar.gz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
+/work/gen-index.sh
