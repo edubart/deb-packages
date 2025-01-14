@@ -34,5 +34,4 @@ Architecture: riscv64
 Multi-Arch: same
 Depends:
  ${misc:Depends},
- ${shlibs:Depends},
 Description: Cartesi Machine guest libcmt development files

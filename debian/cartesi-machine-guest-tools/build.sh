@@ -27,12 +27,12 @@ echo "${sha256sums}" | sha256sum --check
 dpkg-deb -x ${pkgname}.deb ${pkgname}-${pkgver}
 dpkg-deb -x libcmt.deb ${pkgname}-${pkgver}
 dpkg-deb -x libcmt-dev.deb ${pkgname}-${pkgver}
-rm *.deb
 tar --sort=name \
     --mtime="@$(stat -c %Y ${pkgname}.deb)" \
     --owner=0 --group=0 --numeric-owner \
     --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
     -czf ${pkgname}_${pkgver}.orig.tar.gz ${pkgname}-${pkgver}
+rm *.deb
 cd ${pkgname}-${pkgver}
 
 # Patch

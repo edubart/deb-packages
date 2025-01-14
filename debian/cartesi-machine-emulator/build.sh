@@ -36,7 +36,7 @@ ${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
  -- ${pkgsigner}  $(date -R -u)
 EOF
 mv ../add-generated-files.diff debian/patches/
-mv COPYING debian/copyright
+cp -a COPYING debian/copyright
 if grep Ubuntu /etc/issue > /dev/null; then
     sed -i 's/libboost1.81/libboost1.83/' debian/control
 fi
