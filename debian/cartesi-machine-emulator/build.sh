@@ -33,7 +33,7 @@ ${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
 
   * Please read the project sources for release change logs.
 
- -- ${pkgsigner}  $(date -R -u)
+ -- ${pkgsigner}  $(date --reference=../build.sh --rfc-email --utc)
 EOF
 mv ../add-generated-files.diff debian/patches/
 cp -a COPYING debian/copyright
@@ -48,7 +48,7 @@ touch -r ../build.sh **/**
 
 # Package
 apt-get build-dep --no-install-recommends -y .
-dpkg-buildpackage --unsigned-source --unsigned-changes
+dpkg-buildpackage --unsigned-source
 
 # Update repository
 mv ../*.{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/

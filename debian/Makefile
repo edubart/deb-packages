@@ -1,11 +1,11 @@
-# List of packages to targeting any architecture
-PACKAGES_ANYARCH=\
-cartesi-machine-emulator
-
 # List of packages that doesn't depend on the architecture it's built on
 PACKAGES_NOARCH=\
 cartesi-machine-linux-image \
 cartesi-machine-rootfs-image
+
+# List of packages to targeting any architecture
+PACKAGES_ANYARCH=\
+cartesi-machine-emulator
 
 # List of packages to compile for riscv64
 PACKAGES_RISCV64=\
@@ -29,18 +29,17 @@ REPO_URL=https://edubart.github.io/linux-packages/apt
 KEY_NAME=cartesi-deb-key
 
 # Package list to build
-PACKAGES=$(PACKAGES_ANYARCH)
-ifeq ($(TARGET_ARCH),riscv64)
-PACKAGES+=$(PACKAGES_RISCV64)
-endif
 ifeq ($(TARGET_ARCH),$(shell dpkg --print-architecture))
 PACKAGES+=$(PACKAGES_NOARCH)
+endif
+PACKAGES+=$(PACKAGES_ANYARCH)
+ifeq ($(TARGET_ARCH),riscv64)
+PACKAGES+=$(PACKAGES_RISCV64)
 endif
 
 all: ## Generate a key (if needed) and build all packages
 	@$(MAKE) --no-print-directory image
 	@$(MAKE) --no-print-directory key
-	@$(MAKE) --no-print-directory index
 	@$(MAKE) --no-print-directory packages-all
 
 packages-all: ## Build packages for all architectures (amd64/arm64/riscv64)
@@ -70,6 +69,7 @@ key: ## Generate package signature key
     gpg --armor --export > /apt/keys/$(KEY_NAME).gpg && \
     gpg --export > /apt/keys/$(KEY_NAME).gpg.bin && \
 	chown -R $(shell id -u):$(shell id -g) /root/.gnupg /apt/keys"
+	@$(MAKE) --no-print-directory index
 
 index: ## Generate package index
 	@mkdir -p $(REPO_PATH)/$(REPO_NAME)

@@ -42,7 +42,7 @@ ${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
 
   * Please read the project sources for release change logs.
 
- -- ${pkgsigner}  $(date -R -u)
+ -- ${pkgsigner}  $(date --reference=../build.sh --rfc-email --utc)
 EOF
 
 # Ensure reproducibility
@@ -50,7 +50,7 @@ export SOURCE_DATE_EPOCH=$(stat -c %Y ../build.sh) DEB_BUILD_OPTIONS="reproducib
 touch -r ../build.sh **/**
 
 # Package
-dpkg-buildpackage --unsigned-source --unsigned-changes --build=source,any
+dpkg-buildpackage --unsigned-source
 
 # Update repository
 mv ../*.{deb,orig.tar.gz,debian.tar.xz,dsc,buildinfo,changes} /apt/${REPO_NAME}/
