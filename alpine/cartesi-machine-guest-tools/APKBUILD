@@ -22,7 +22,6 @@ prepare() {
 
 build() {
     cd "$_builddir"
-    export CXXFLAGS=-static-libstdc++
     make
 }
 

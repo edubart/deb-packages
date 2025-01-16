@@ -5,7 +5,6 @@ export DEB_BUILD_OPTIONS+=nocheck
 
 # Include linux headers
 export DEB_CFLAGS_MAINT_APPEND+=-I/usr/src/linux-headers/include
-export DEB_CXXFLAGS_MAINT_APPEND+=-static-libstdc++
 
 # Set cargo to use
 export CARGO=cargo-1.77
