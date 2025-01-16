@@ -3,10 +3,10 @@ set -e
 
 pkgname=cartesi-machine-guest-tools
 pkgver=0.17.0
-_pkgver=37318e8a80b4312000c0b5d18bad3c6291861d41
+_pkgver=$pkgver-test1
 pkgrel=1
-sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/$_pkgver.tar.gz")
-sha256sums=("09ed3e62ad96d89011f7bf19e49574646fba5813ae21370e8ff24778320815fc  ${pkgname}_${pkgver}.orig.tar.gz")
+sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/refs/tags/v$_pkgver.tar.gz")
+sha256sums=("d6035c08e1555a9947fa002c512152a839f1dd2eeff68c20cf036817faefd55d  ${pkgname}_${pkgver}.orig.tar.gz")
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_$(dpkg --print-architecture).deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 

@@ -2,11 +2,11 @@
 set -e
 
 pkgname=cartesi-machine-rootfs-image
-pkgver=0.16.2
+pkgver=0.17.0
 pkgrel=1
-_pkgver=${pkgver}-test2
+_pkgver=${pkgver}-test1
 sources=("rootfs.ext2::https://github.com/cartesi/machine-guest-tools/releases/download/v${_pkgver}/rootfs-tools-v${_pkgver}.ext2")
-sha256sums="7d73e6298f9b7bafec1cfcb4923f1d9c80b33816cc9ecd00faac8c6d1e949679 rootfs.ext2"
+sha256sums="6ca4073504bbc3e42cfda7641bb66aed1e0cd5122146544869b49aa09befe01e rootfs.ext2"
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_all.deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 

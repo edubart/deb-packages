@@ -1,7 +1,7 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-guest-tools
 pkgver=0.17.0
-_pkgver=37318e8a80b4312000c0b5d18bad3c6291861d41
+_pkgver=$pkgver-test1
 pkgrel=1
 pkgdesc="Cartesi Machine guest tools"
 url="https://github.com/cartesi/machine-guest-tools"
@@ -10,8 +10,8 @@ license="Apache-2.0"
 depends="busybox"
 makedepends="build-base cartesi-machine-guest-linux-headers cargo clang-libclang"
 options="!check"
-source="machine-guest-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/$_pkgver.tar.gz"
-sha256sums="09ed3e62ad96d89011f7bf19e49574646fba5813ae21370e8ff24778320815fc  machine-guest-tools-$_pkgver.tar.gz"
+source="machine-guest-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/refs/tags/v$_pkgver.tar.gz"
+sha256sums="d6035c08e1555a9947fa002c512152a839f1dd2eeff68c20cf036817faefd55d  machine-guest-tools-$_pkgver.tar.gz"
 subpackages="cartesi-machine-guest-libcmt:package_libcmt cartesi-machine-guest-libcmt-dev:package_libcmt_dev"
 install="$pkgname.pre-install"
 _builddir="$srcdir/machine-guest-tools-$_pkgver"
