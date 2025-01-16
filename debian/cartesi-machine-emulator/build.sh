@@ -36,7 +36,6 @@ ${pkgname} (${pkgver}-${pkgrel}) RELEASED; urgency=low
  -- ${pkgsigner}  $(date --reference=../build.sh --rfc-email --utc)
 EOF
 mv ../add-generated-files.diff debian/patches/
-cp -a COPYING debian/copyright
 patch -Np1 < debian/patches/add-generated-files.diff
 
 # Ensure reproducibility
