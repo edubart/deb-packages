@@ -13,7 +13,7 @@ pkgdeb=${pkgname}_${pkgver}-${pkgrel}_$(dpkg --print-architecture).deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 
 # Maybe skip build
-if [ "$(find . -type f -printf '%T@\n' | sort -n | tail -1 | cut -d. -f1)" -lt "$(stat -c %Y /apt/${REPO_NAME}/${pkgdeb})" ]; then
+if [ "/apt/${REPO_NAME}/${pkgdeb}" -nt "$(find . -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)" ]; then
     echo "${pkgname}: Package is up to date"; exit 0
 fi
 

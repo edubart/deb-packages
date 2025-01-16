@@ -2,20 +2,16 @@
 set -e
 
 pkgname=cartesi-machine-guest-tools
-pkgver=0.16.1
-_pkgver=${pkgver}
+pkgver=0.16.2
+_pkgver=37b1e2592b2fac56a6e16b1dd8ad3550c41d8d97
 pkgrel=1
-sources=("cartesi-machine-guest-tools.deb::https://github.com/cartesi/machine-emulator-tools/releases/download/v${_pkgver}/machine-emulator-tools-v${_pkgver}.deb"
-         "libcmt.deb::https://github.com/cartesi/machine-emulator-tools/releases/download/v${_pkgver}/libcmt-v${_pkgver}.deb"
-         "libcmt-dev.deb::https://github.com/cartesi/machine-emulator-tools/releases/download/v${_pkgver}/libcmt-dev-v${_pkgver}.deb")
-sha256sums=("6ad99e74375a543884235405f6afd424fdb4c9ca35c67c57f8bca1bb0101470b  cartesi-machine-guest-tools.deb"
-            "dc56a7fdbcf93d9ff4a9067ef97b7d492c6b0dabb180906f6ce9531129c3d380  libcmt.deb"
-            "ac93f0b8b2c8be85e1b3956f3e0206009fbb8c73f9327948a811b1864a2cee8d  libcmt-dev.deb")
+sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/$_pkgver.tar.gz")
+sha256sums=("227edbfe4af4567d81c90ff97588c14e7d7a9b44c88cc0d23931b00c0b4f6584  ${pkgname}_${pkgver}.orig.tar.gz")
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_$(dpkg --print-architecture).deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 
 # Maybe skip build
-if [ "$(find . -type f -printf '%T@\n' | sort -n | tail -1 | cut -d. -f1)" -lt "$(stat -c %Y /apt/${REPO_NAME}/${pkgdeb})" ]; then
+if [ "/apt/${REPO_NAME}/${pkgdeb}" -nt "$(find . -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)" ]; then
     echo "${pkgname}: Package is up to date"; exit 0
 fi
 
@@ -24,15 +20,8 @@ for f in ${sources[*]}; do wget -O $(echo $f | sed 's/::/ /'); done
 echo "${sha256sums}" | sha256sum --check
 
 # Extract
-dpkg-deb -x ${pkgname}.deb ${pkgname}-${pkgver}
-dpkg-deb -x libcmt.deb ${pkgname}-${pkgver}
-dpkg-deb -x libcmt-dev.deb ${pkgname}-${pkgver}
-tar --sort=name \
-    --mtime="@$(stat -c %Y ${pkgname}.deb)" \
-    --owner=0 --group=0 --numeric-owner \
-    --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
-    -czf ${pkgname}_${pkgver}.orig.tar.gz ${pkgname}-${pkgver}
-rm *.deb
+tar -xf ${pkgname}_${pkgver}.orig.tar.gz
+mv machine-emulator-tools-${_pkgver} ${pkgname}-${pkgver}
 cd ${pkgname}-${pkgver}
 
 # Patch
@@ -50,6 +39,7 @@ export SOURCE_DATE_EPOCH=$(stat -c %Y ../build.sh) DEB_BUILD_OPTIONS="reproducib
 touch -r ../build.sh **/**
 
 # Package
+apt-get build-dep --no-install-recommends -y .
 dpkg-buildpackage
 
 # Update repository

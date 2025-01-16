@@ -1,7 +1,7 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-guest-tools
 pkgver=0.16.2
-_pkgver=$pkgver-test2
+_pkgver=37b1e2592b2fac56a6e16b1dd8ad3550c41d8d97
 pkgrel=1
 pkgdesc="Cartesi Machine guest tools"
 url="https://github.com/cartesi/machine-emulator-tools"
@@ -10,58 +10,39 @@ license="Apache-2.0"
 depends="busybox"
 makedepends="build-base cartesi-machine-guest-linux-headers cargo clang-libclang"
 options="!check"
-source="machine-emulator-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/refs/tags/v$_pkgver.tar.gz"
-sha256sums="2505eb04e3add262bb6a76453dd47690172efc0ff102a68146b8e9fef35edd9e  machine-emulator-tools-$_pkgver.tar.gz"
+source="machine-emulator-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/$_pkgver.tar.gz"
+sha256sums="227edbfe4af4567d81c90ff97588c14e7d7a9b44c88cc0d23931b00c0b4f6584  machine-emulator-tools-$_pkgver.tar.gz"
 subpackages="cartesi-machine-guest-libcmt:package_libcmt cartesi-machine-guest-libcmt-dev:package_libcmt_dev"
 install="$pkgname.pre-install"
 _builddir="$srcdir/machine-emulator-tools-$_pkgver"
-export TOOLCHAIN_PREFIX=
 
 prepare() {
     cd "$_builddir"
-
-    # cttyhack is not available in Alpine, but we can workaround with setsid -c
-    sed -i -e '/busybox cttyhack/d' -e 's/setsid/setsid -c/' sys-utils/cartesi-init/cartesi-init
 }
 
 build() {
     cd "$_builddir"
-    make -C sys-utils/libcmt
-    make -C sys-utils/libcmt install
-    make -C sys-utils all
-
-    (cd rollup-http/rollup-http-server && cargo build --release)
-    (cd rollup-http/echo-dapp && cargo build --release)
+    export CXXFLAGS=-static-libstdc++
+    make
 }
 
 package() {
     cd "$_builddir"
-    mkdir -p "$pkgdir/usr/bin" "$pkgdir/usr/sbin"
-    install -Dm755 sys-utils/xhalt/xhalt "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/yield/yield "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/hex/hex "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/rollup/rollup "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/ioctl-echo-loop/ioctl-echo-loop "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/misc/* "$pkgdir/usr/bin/"
-    install -Dm755 sys-utils/cartesi-init/cartesi-init "$pkgdir/usr/sbin/"
-
-    install -Dm755 rollup-http/rollup-http-server/target/release/rollup-http-server "$pkgdir/usr/bin/"
-    install -Dm755 rollup-http/echo-dapp/target/release/echo-dapp "$pkgdir/usr/bin/"
-    install -Dm755 rollup-http/rollup-init/rollup-init "$pkgdir/usr/bin/"
+    make -C sys-utils install PREFIX=/usr DESTDIR="$pkgdir"
+    make -C rollup-http install PREFIX=/usr DESTDIR="$pkgdir"
+    make install-share PREFIX=/usr DESTDIR="$pkgdir"
 }
 
 package_libcmt() {
     pkgdesc="Cartesi Machine guest libcmt"
 
     cd "$_builddir"
-    make -C sys-utils/libcmt install-run \
-        PREFIX=/usr TARGET_DESTDIR="$subpkgdir"
+    make -C sys-utils/libcmt install-run PREFIX=/usr DESTDIR="$subpkgdir"
 }
 
 package_libcmt_dev() {
     pkgdesc="Cartesi Machine guest libcmt development files"
 
     cd "$_builddir"
-    make -C sys-utils/libcmt install \
-        PREFIX=/usr TARGET_DESTDIR="$subpkgdir"
+    make -C sys-utils/libcmt install-dev PREFIX=/usr DESTDIR="$subpkgdir"
 }
