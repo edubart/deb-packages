@@ -2,11 +2,11 @@
 set -e
 
 pkgname=cartesi-machine-guest-tools
-pkgver=0.16.2
-_pkgver=37b1e2592b2fac56a6e16b1dd8ad3550c41d8d97
+pkgver=0.17.0
+_pkgver=37318e8a80b4312000c0b5d18bad3c6291861d41
 pkgrel=1
-sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/$_pkgver.tar.gz")
-sha256sums=("227edbfe4af4567d81c90ff97588c14e7d7a9b44c88cc0d23931b00c0b4f6584  ${pkgname}_${pkgver}.orig.tar.gz")
+sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/$_pkgver.tar.gz")
+sha256sums=("09ed3e62ad96d89011f7bf19e49574646fba5813ae21370e8ff24778320815fc  ${pkgname}_${pkgver}.orig.tar.gz")
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_$(dpkg --print-architecture).deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 
@@ -21,7 +21,7 @@ echo "${sha256sums}" | sha256sum --check
 
 # Extract
 tar -xf ${pkgname}_${pkgver}.orig.tar.gz
-mv machine-emulator-tools-${_pkgver} ${pkgname}-${pkgver}
+mv machine-guest-tools-${_pkgver} ${pkgname}-${pkgver}
 cd ${pkgname}-${pkgver}
 
 # Patch

@@ -1,20 +1,20 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-guest-tools
-pkgver=0.16.2
-_pkgver=37b1e2592b2fac56a6e16b1dd8ad3550c41d8d97
+pkgver=0.17.0
+_pkgver=37318e8a80b4312000c0b5d18bad3c6291861d41
 pkgrel=1
 pkgdesc="Cartesi Machine guest tools"
-url="https://github.com/cartesi/machine-emulator-tools"
+url="https://github.com/cartesi/machine-guest-tools"
 arch="riscv64"
 license="Apache-2.0"
 depends="busybox"
 makedepends="build-base cartesi-machine-guest-linux-headers cargo clang-libclang"
 options="!check"
-source="machine-emulator-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-emulator-tools/archive/$_pkgver.tar.gz"
-sha256sums="227edbfe4af4567d81c90ff97588c14e7d7a9b44c88cc0d23931b00c0b4f6584  machine-emulator-tools-$_pkgver.tar.gz"
+source="machine-guest-tools-$_pkgver.tar.gz::https://github.com/cartesi/machine-guest-tools/archive/$_pkgver.tar.gz"
+sha256sums="09ed3e62ad96d89011f7bf19e49574646fba5813ae21370e8ff24778320815fc  machine-guest-tools-$_pkgver.tar.gz"
 subpackages="cartesi-machine-guest-libcmt:package_libcmt cartesi-machine-guest-libcmt-dev:package_libcmt_dev"
 install="$pkgname.pre-install"
-_builddir="$srcdir/machine-emulator-tools-$_pkgver"
+_builddir="$srcdir/machine-guest-tools-$_pkgver"
 
 prepare() {
     cd "$_builddir"

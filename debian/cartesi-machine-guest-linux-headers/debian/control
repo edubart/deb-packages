@@ -2,7 +2,7 @@ Source: cartesi-machine-guest-linux-headers
 Section: otherosfs
 Priority: optional
 Maintainer: Cartesi Machine Reference Unit
-Homepage: https://github.com/cartesi/image-kernel
+Homepage: https://github.com/cartesi/machine-linux-image
 Build-Depends:
  debhelper-compat (= 13),
 Standards-Version: 4.5.1

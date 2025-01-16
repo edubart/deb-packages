@@ -4,11 +4,11 @@ pkgver=0.16.2
 _pkgver=$pkgver-test2
 pkgrel=1
 pkgdesc="Cartesi Machine guest root filesystem image"
-url="https://github.com/cartesi/machine-emulator-tools"
+url="https://github.com/cartesi/machine-guest-tools"
 arch="noarch"
 license="GPL-2.0"
 options="!check"
-source="rootfs.ext2::https://github.com/cartesi/machine-emulator-tools/releases/download/v$_pkgver/rootfs-tools-v$_pkgver.ext2"
+source="rootfs.ext2::https://github.com/cartesi/machine-guest-tools/releases/download/v$_pkgver/rootfs-tools-v$_pkgver.ext2"
 sha256sums="7d73e6298f9b7bafec1cfcb4923f1d9c80b33816cc9ecd00faac8c6d1e949679  rootfs.ext2"
 
 package() {

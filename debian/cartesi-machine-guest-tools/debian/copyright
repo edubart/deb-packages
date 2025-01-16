@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: machine-emulator-tools
-Source: https://github.com/cartesi/machine-emulator-tools
+Upstream-Name: machine-guest-tools
+Source: https://github.com/cartesi/machine-guest-tools
 
 Files: *
 Copyright: 2024 Individual contributors

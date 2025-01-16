@@ -4,11 +4,11 @@ pkgver=0.20.0
 pkgrel=1
 _linuxver=6.5.13-ctsi-1
 pkgdesc="Cartesi Machine guest Linux kernel image"
-url="https://github.com/cartesi/image-kernel"
+url="https://github.com/cartesi/machine-linux-image"
 arch="noarch"
 license="GPL-2.0"
 options="!check"
-source="linux.bin::https://github.com/cartesi/image-kernel/releases/download/v$pkgver/linux-$_linuxver-v$pkgver.bin"
+source="linux.bin::https://github.com/cartesi/machine-linux-image/releases/download/v$pkgver/linux-$_linuxver-v$pkgver.bin"
 sha256sums="65dd100ff6204346ac2f50f772721358b5c1451450ceb39a154542ee27b4c947  linux.bin"
 
 package() {

@@ -1385,13 +1385,13 @@ $ apt-get source -qq --print-uris lz4=1.9.3-2build2
 'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lz4/lz4_1.9.3.orig.tar.gz' lz4_1.9.3.orig.tar.gz 320958 SHA512:c246b0bda881ee9399fa1be490fa39f43b291bb1d9db72dba8a85db1a50aad416a97e9b300eee3d2a4203c2bd88bda2762e81bc229c3aa409ad217eb306a454c
 'http://ports.ubuntu.com/ubuntu-ports/pool/main/l/lz4/lz4_1.9.3-2build2.debian.tar.xz' lz4_1.9.3-2build2.debian.tar.xz 14088 SHA512:9f61516a672186299a96aee5b7a71d9cb1ad3db2697fa10b802fef14a63587bb3459281f7300726711a116893c10858914f558aece1d224876e287020a23dde6
 
-dpkg source package: machine-emulator-tools=0.16.2-test2
+dpkg source package: machine-guest-tools=0.16.2-test2
 
 Binary Packages:
 
-    machine-emulator-tools=0.16.2-test2
+    machine-guest-tools=0.16.2-test2
 
-Licenses: (parsed from: /usr/share/doc/machine-emulator-tools/copyright)
+Licenses: (parsed from: /usr/share/doc/machine-guest-tools/copyright)
 
     Apache-2.0
 

@@ -2,13 +2,13 @@
 set -e
 
 pkgname=cartesi-machine-emulator
-pkgver=0.18.2
+pkgver=0.19.0
 pkgrel=1
 _pkgver=${pkgver}-test1
 sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/machine-emulator/archive/refs/tags/v${_pkgver}.tar.gz"
          "add-generated-files.diff::https://github.com/cartesi/machine-emulator/releases/download/v${_pkgver}/add-generated-files.diff")
-sha256sums=("9d5fb1139f0997f665a2130ab4a698080d7299d29d5e69494764510587ca9566  ${pkgname}_${pkgver}.orig.tar.gz"
-            "8f513f065e94e6ab969cd27186421e28db0091b3a563cd87280c3bb51671669e  add-generated-files.diff")
+sha256sums=("93121d1c7edf5ebc8d5b8b042d3b18a4cf2454c702ec2cfe8c92086d7529e16d  ${pkgname}_${pkgver}.orig.tar.gz"
+            "162d62ec8b66801f1ad421774050ea1d6c5cc4c7dcc8f5615956853d6baed87f  add-generated-files.diff")
 pkgdeb=${pkgname}_${pkgver}-${pkgrel}_$(dpkg --print-architecture).deb
 pkgsigner="Cartesi Deb Builder <cartesi-deb-builder@builder>"
 
