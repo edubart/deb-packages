@@ -1,6 +1,6 @@
 # Cartesi Linux Packages
 
-Cartesi Linux packages repository, containing build scripts for packaging for:
+Cartesi Linux packages repository, containing packaging for:
 
 - Debian 12 (Bookworm) - Host
 - Ubuntu 24.04 LTS (Noble) - Guest
