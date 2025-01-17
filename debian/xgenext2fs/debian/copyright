@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: genext2fs
+Upstream-Contact: Xavier Bestel <xavier.bestel@free.fr>
+Source: https://github.com/bestouff/genext2fs
+
+Files: *
+Copyright: 1999 - 2000 Lineo, inc. and John Beppu
+           1999 - 2001 John Beppu <beppu@codepoet.org>
+           2000 - 2019 Xavier Bestel <xavier.bestel@free.fr>
+           2002 Edward Betts <edward@debian.org>
+           2002 Ixia communications
+License: GPL-2

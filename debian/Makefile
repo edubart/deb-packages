@@ -5,7 +5,8 @@ cartesi-machine-rootfs-image
 
 # List of packages to targeting any architecture
 PACKAGES_ANYARCH=\
-cartesi-machine-emulator
+cartesi-machine-emulator \
+xgenext2fs
 
 # List of packages to compile for riscv64
 PACKAGES_RISCV64=\

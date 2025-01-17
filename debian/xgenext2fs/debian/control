@@ -1,0 +1,22 @@
+Source: xgenext2fs
+Section: admin
+Priority: optional
+Maintainer: Cartesi Machine Reference Unit
+Homepage: https://github.com/cartesi/xgenext2fs
+Build-Depends:
+ debhelper-compat (= 13),
+ autoconf,
+ automake,
+ libarchive-dev,
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+#Vcs-Git: https://salsa.debian.org/debian/xgenext2fs.git
+#Vcs-Browser: https://salsa.debian.org/debian/xgenext2fs
+
+Package: xgenext2fs
+Architecture: any
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: ext2 filesystem generator for embedded systems

@@ -2,7 +2,8 @@
 PACKAGES_ANYARCH=\
 cartesi-machine-linux-image \
 cartesi-machine-rootfs-image \
-cartesi-machine-emulator
+cartesi-machine-emulator \
+xgenext2fs
 
 # List of packages to compile for riscv64
 PACKAGES_RISCV64=\

@@ -1,0 +1,26 @@
+# Maintainer: Eduardo Bart <edub4rt@gmail.com>
+pkgname=xgenext2fs
+pkgver=1.5.6
+pkgrel=1
+pkgdesc="ext2 filesystem generator for embedded systems"
+url="https://github.com/cartesi/genext2fs"
+arch="all"
+license="GPL-2.0"
+makedepends="build-base libarchive-dev autoconf automake bash"
+options="!check"
+source="genext2fs-$pkgver.tar.gz::https://github.com/cartesi/genext2fs/archive/refs/tags/v$pkgver.tar.gz"
+sha256sums="34bfc26a037def23b85b676912462a3d126a87ef15c66c212b3500650da44f9e  genext2fs-$pkgver.tar.gz"
+
+_builddir="$srcdir/genext2fs-$pkgver"
+
+build() {
+    cd "$_builddir"
+    ./autogen.sh
+    ./configure --enable-libarchive --prefix=/usr
+    make
+}
+
+package() {
+    cd "$_builddir"
+    install -Dm755 xgenext2fs $pkgdir/usr/bin/xgenext2fs
+}
