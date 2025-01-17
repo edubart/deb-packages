@@ -1,0 +1,20 @@
+Date: Thu, 23 Jan 2025 15:06:37 +0000
+Label: Cartesi APT Repository
+Origin: Cartesi
+Suite: stable
+MD5Sum:
+ 36fb3f4e340f8dfa688d0bc53b2e23a8            13488 Packages
+ ee7972a461b904a4dfd35ba9f3edf531             3544 Packages.gz
+ 11cdb34d0b4a2471205695647a8bee58               98 Release
+SHA1:
+ 3832c98d6a3145b34739e94b42a2859da1f3a266            13488 Packages
+ 7ceb9f484fab325bf1e0ec0002f5f1faa747f2ae             3544 Packages.gz
+ 443185b128dae6a5cb5b2ea1b8fa9b273ff474b8               98 Release
+SHA256:
+ 69a2b53de9bc2c0e85e13ee5549e09c163b24c5832f9f6d3f936ed55f4417a72            13488 Packages
+ 04779954087aba153d97d571d52f24fca77d46652dbcd17c1282989e0ac7a7e6             3544 Packages.gz
+ ae03360519429e5cb87450bc654ab5a9788f84488b4c6be23fa15cba426cb27b               98 Release
+SHA512:
+ eaf1a5501da1a9cfab41014d73181be6883318e5fea0308e978d339f63f368a8e39976000dcdaa953279b2733fc9da64f9f55b234564c604fd8e877e13791427            13488 Packages
+ c285ed73848c69e20676342c6c7c2dfba274fe5d77936b9911153d1ebf2c8f6ee5ed13ee42f6ce8515b8dba9c382ed055c3f196ee9c40546f41a7b98ddb87675             3544 Packages.gz
+ c9ae3648a8181916fb55e8661fd3de8f9144eb207624396af3ca2972c1da13abf8bb281ad53e56884333753d9c811610b83be528e2b2f12d151949cd4571a47f               98 Release

@@ -1,0 +1,384 @@
+Package: cartesi-machine
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 17
+Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
+Filename: stable/cartesi-machine_0.19.0-1_amd64.deb
+Size: 9292
+MD5sum: dfff382a30e1e33985e90f8b3573404b
+SHA1: 7a2f93149120887a6d1641236e7672a9203df270
+SHA256: 4e864f3f45ffc99b4e0b35985f31b18f3e3a7a18214246f22550c019c567b4b6
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine (meta-package)
+
+Package: cartesi-machine
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 9
+Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
+Filename: stable/cartesi-machine_0.19.0-1_riscv64.deb
+Size: 1714
+MD5sum: c5f1ffae9c574220e6256172ca06b35c
+SHA1: 44f103f1ef07b5a8092b7ae1c5b3ddb71049226c
+SHA256: 209cc658472c7a2275f6d91b660e90a971e85aac0fdc4b7e55ddab51da2f83c6
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine (meta-package)
+
+Package: cartesi-machine
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 17
+Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
+Filename: stable/cartesi-machine_0.19.0-1_arm64.deb
+Size: 9292
+MD5sum: 30b08432fc7ea58509fe0560f5df7ad6
+SHA1: 6d2755f1e06ba6f75c516e737d4f8b42d9d7be0d
+SHA256: 52313db47dd3c2cd1007ae05b9c0b884d398009956627bfb0b2e98c1942c4fb2
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine (meta-package)
+
+Package: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 16565
+Depends: libc6 (>= 2.38), libslirp0 (>= 4.1.0), lua5.4
+Filename: stable/cartesi-machine-emulator_0.19.0-1_riscv64.deb
+Size: 2904448
+MD5sum: f7a6ec4d147de40913d9a15bf96801de
+SHA1: 356f6702d1abc067ecb6606f8f791e074ab4390a
+SHA256: 3f2cc8f71bdb9924529ea0ce6872f26f129ff9ad7f5aef1f101e5a16168f6907
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator for RISC-V Linux systems
+
+Package: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 16627
+Depends: libc6 (>= 2.36), libslirp0 (>= 4.1.0), lua5.4
+Filename: stable/cartesi-machine-emulator_0.19.0-1_arm64.deb
+Size: 2001072
+MD5sum: 44b09964e37dfef356d8bc89e7b26250
+SHA1: 28c750b78338cee5e80d09f9be57e714fae2b553
+SHA256: 045c0a3129a8cd8833ea322cef71acfff1d975cd44cd681a6b87c68234a40052
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator for RISC-V Linux systems
+
+Package: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 17348
+Depends: libc6 (>= 2.36), libslirp0 (>= 4.1.0), lua5.4
+Filename: stable/cartesi-machine-emulator_0.19.0-1_amd64.deb
+Size: 2260796
+MD5sum: d71d127a0dbf3208d4f1cb2a66f839a4
+SHA1: a6a6bc93f664b960e3e8fe25db78ad7040dc3d3b
+SHA256: fc6bc7f2d7b4be7cc8a4a3e18bbf7b89a576b488b8fca7efb48c2ef35030e0b6
+Section: otherosfs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator for RISC-V Linux systems
+
+Package: cartesi-machine-emulator-dbgsym
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 43876
+Depends: cartesi-machine-emulator (= 0.19.0-1)
+Filename: stable/cartesi-machine-emulator-dbgsym_0.19.0-1_amd64.deb
+Size: 40329072
+MD5sum: 3943af686b60a5d33fdd7aaad800a430
+SHA1: e5c2fc3a1c24bf977526ac2a09bff10c7a77ce99
+SHA256: 16c685018d552c40713381db9e31e7001134f2da9ae044805c1362f20ea64422
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for cartesi-machine-emulator
+Build-Ids: 5bce1f5b80d2c1b2f63e92f230abd0f57881fbc7 6b86978d16d278a4f1360c659996664df21432d7 71a9d69a1218242d1ef419cefc6b75e176fec59a 8ad6fd2efda7029f30d9e924e01ead4a89ae2685 9ae490045ab3734e330c9d7a69880cd3a4bd77a1 c3cf061bdd7fb7908e5e652ac868676caa3b06f4
+
+Package: cartesi-machine-emulator-dbgsym
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 43017
+Depends: cartesi-machine-emulator (= 0.19.0-1)
+Filename: stable/cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
+Size: 38859160
+MD5sum: 381b7862e22c12448a0c474612c73eaf
+SHA1: 2b21cab2bb4f61d9a14702808727916bcf5e6cc5
+SHA256: 5b5516fbb125eecf3193529f05fa19afdad2472ab936767423895b1f4d40c738
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for cartesi-machine-emulator
+Build-Ids: 0c3eac1b80ff932fa355a32e9ec6bd3aee48dbb1 16b4bcb763965c405b72210f7eb89bb434489755 4971f048b23509b44b7409087bc9722ac7c0b93c b2986ada42fe752d6c8763574d19f2189938a031 e2296718dc563f23e22c9a9b8d5eaa62b1768b90 ea5bf9e3bf231fdd542cb66d6e683974e10bfa93
+
+Package: cartesi-machine-emulator-dev
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 7830
+Depends: libslirp-dev
+Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
+Size: 800176
+MD5sum: 7028a6093844336f868c16695373f22d
+SHA1: a701fe14a0b5a2962c13ecbe1c8e1d0f0784603e
+SHA256: 041c1402e987055a86c76ff9c56af477b3063bbf90564a5bb738605ee385d0eb
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator development files
+
+Package: cartesi-machine-emulator-dev
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 45812
+Depends: libslirp-dev
+Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
+Size: 5195806
+MD5sum: eb6d1e4d73b71f44c3a00ed213e18fa8
+SHA1: 4a39882d3f3795d23616962634aa5d73233a80c7
+SHA256: f6d9cae5305548b6125af454ccf4eb99a4ced0279b9cc9962a9583ccc8c50bb2
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator development files
+
+Package: cartesi-machine-emulator-dev
+Source: cartesi-machine-emulator
+Version: 0.19.0-1
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 8054
+Depends: libslirp-dev
+Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_amd64.deb
+Size: 865472
+MD5sum: a714a956746d2a7ee92773ad33b62c6b
+SHA1: 16bd185f5c3722e806710fbba0f0f5827f94201b
+SHA256: 89792477161bbf3064882467e48df00beb7ebf7e13588389fac2248e66166e2d
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-emulator
+Description: Cartesi Machine emulator development files
+
+Package: cartesi-machine-guest-libcmt
+Source: cartesi-machine-guest-tools
+Version: 0.17.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 44
+Depends: libc6 (>= 2.27)
+Filename: stable/cartesi-machine-guest-libcmt_0.17.0-1_riscv64.deb
+Size: 17262
+MD5sum: 9eb849bb900c72a8bbde936ef352b527
+SHA1: b10ccd2c7843611ad73f80b8693b8d5dc790222b
+SHA256: fbd00c3d31c8ca0f2a654b243f1c114d25473f6513d7b8239cf494fe85ae46ce
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-guest-tools
+Description: Cartesi Machine guest libcmt
+
+Package: cartesi-machine-guest-libcmt-dev
+Source: cartesi-machine-guest-tools
+Version: 0.17.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 307
+Filename: stable/cartesi-machine-guest-libcmt-dev_0.17.0-1_riscv64.deb
+Size: 47310
+MD5sum: 04915429e9453d7f5d8845e9813616d1
+SHA1: 9096e057779a15b9c6664466e6e17f7dd41815ae
+SHA256: dc127a7da2af16366ab47dc0bc9b2c7cc6117a3d7eb4afacbeec4734bbf43b1e
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-guest-tools
+Description: Cartesi Machine guest libcmt development files
+
+Package: cartesi-machine-guest-linux-headers
+Version: 0.20.0-1
+Architecture: all
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 6594
+Filename: stable/cartesi-machine-guest-linux-headers_0.20.0-1_all.deb
+Size: 1324670
+MD5sum: 30746598bc199a843d3d75fa5baaf525
+SHA1: cb741731f0ed5590564acb3d05a4cd853506a223
+SHA256: 21068087cbf73903383256a61ecafabad359d4f9f4c8cb668776c55cc57b428d
+Section: otherosfs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/machine-linux-image
+Description: Cartesi Machine guest Linux kernel headers
+
+Package: cartesi-machine-guest-tools
+Version: 0.17.0-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 5913
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 4.2), libstdc++6 (>= 13.1), busybox-static
+Filename: stable/cartesi-machine-guest-tools_0.17.0-1_riscv64.deb
+Size: 1823736
+MD5sum: fbdaa38a74b5f3758406f74bc8782e8e
+SHA1: a4b2f3f62f5172e559b79dae7b65a3c92b735018
+SHA256: 6d46a2110c066c7eb3f1f506573e091da206014d0eb31997f76bc1c09a3fdaf7
+Section: utils
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/cartesi/machine-guest-tools
+Description: Cartesi Machine guest tools
+
+Package: cartesi-machine-linux-image
+Version: 0.20.0-1
+Architecture: all
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 17142
+Filename: stable/cartesi-machine-linux-image_0.20.0-1_all.deb
+Size: 2739468
+MD5sum: 755870f070667944ec4146d9737706be
+SHA1: 664971815b29028cfad346b0e7c718892673e113
+SHA256: f27c3f20771c6cd9023f5d567ce38c5880fc2fd342e9c57757e645aa2c6d3994
+Section: otherosfs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/machine-linux-image
+Description: Cartesi Machine guest Linux kernel image
+
+Package: cartesi-machine-rootfs-image
+Version: 0.17.0-1
+Architecture: all
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 152155
+Filename: stable/cartesi-machine-rootfs-image_0.17.0-1_all.deb
+Size: 31154072
+MD5sum: c384f8c22f2fe5c1191d873803942253
+SHA1: 65993927c5d8d08bfba7499afcd63fe3f1398c6b
+SHA256: ae051314b26a8602272b6d5cd48492f3cf5aacd621c52f2b0193abc0c8e48534
+Section: otherosfs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/machine-guest-tools
+Description: Cartesi Machine guest root filesystem image
+
+Package: xgenext2fs
+Version: 1.5.6-1
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 82
+Depends: libarchive13 (>= 3.0.4), libc6 (>= 2.34)
+Filename: stable/xgenext2fs_1.5.6-1_arm64.deb
+Size: 28068
+MD5sum: bb0804374b84752bd6e342a03e43670f
+SHA1: b4bbd3e10b0cc740e9dd9638e2dd63bbf396b3be
+SHA256: 0f9d8a3eb9ca8012868c9c3e87136deb0b6589bcda9efe3cb9b12f005e5f158b
+Section: admin
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/xgenext2fs
+Description: ext2 filesystem generator for embedded systems
+
+Package: xgenext2fs
+Version: 1.5.6-1
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 78
+Depends: libarchive13 (>= 3.0.4), libc6 (>= 2.34)
+Filename: stable/xgenext2fs_1.5.6-1_amd64.deb
+Size: 29248
+MD5sum: 7924a2c0f4607b394672dd34576a57b8
+SHA1: a01fd18b7ef28862a56a83e456c5ab6934bc4b5b
+SHA256: ddaec38245d18dd3e814bd5d437f46b4bd5bee286245e05783eca688ed5176a6
+Section: admin
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/xgenext2fs
+Description: ext2 filesystem generator for embedded systems
+
+Package: xgenext2fs
+Version: 1.5.6-1
+Architecture: riscv64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 77
+Depends: libarchive13t64 (>= 3.0.4), libc6 (>= 2.34)
+Filename: stable/xgenext2fs_1.5.6-1_riscv64.deb
+Size: 36968
+MD5sum: 72f83910a007e291b099747eb4aca49b
+SHA1: 1c183ba280716bcecc71e851fe1a94fa1084a6bd
+SHA256: 847b30db5123759143b71dc3ef68990a71f79d6994cabb55370204d0b50efd13
+Section: admin
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/xgenext2fs
+Description: ext2 filesystem generator for embedded systems
+
+Package: xgenext2fs-dbgsym
+Source: xgenext2fs
+Version: 1.5.6-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 92
+Depends: xgenext2fs (= 1.5.6-1)
+Filename: stable/xgenext2fs-dbgsym_1.5.6-1_amd64.deb
+Size: 77056
+MD5sum: 4127c2455992bc54dc54a2dc62418cbb
+SHA1: 41e7cc0c91ed61db9c28bc0285827bc27a7966aa
+SHA256: d90027e9bff2f2e8121d50b6c0fcf7dc17cf6f358964bbc9b1bb5b47971f67c8
+Section: debug
+Priority: optional
+Description: debug symbols for xgenext2fs
+Build-Ids: 221de3b6860688b2dd920ef0ee8be4ba47272581
+
+Package: xgenext2fs-dbgsym
+Source: xgenext2fs
+Version: 1.5.6-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 92
+Depends: xgenext2fs (= 1.5.6-1)
+Filename: stable/xgenext2fs-dbgsym_1.5.6-1_arm64.deb
+Size: 75780
+MD5sum: aa3c531e45887af48263ac3b5366ba22
+SHA1: fdd6a565491c8df71322071d11433b1949d0d829
+SHA256: afa648d8f0af357331b6a5e6dcbf9e89148933aa5b077c5c4a5274dae4291f92
+Section: debug
+Priority: optional
+Description: debug symbols for xgenext2fs
+Build-Ids: eb106d9470d451f75985424728908d6dcd25b804
+
