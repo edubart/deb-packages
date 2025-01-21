@@ -1,15 +1,11 @@
-# Cartesi Alpine packages
+# Cartesi Alpine Packages
 
-This repository contains scripts and `.apk` packages for Cartesi Machine and other Cartesi related software.
-
-All packages binaries are available in the [cdn](https://github.com/edubart/linux-packages/tree/cdn) branch in the `apk` directory,
-while the scripts to generate them are available in the main branch.
-
+This repository contains build scripts for packaging Cartesi related software for Alpine.
 
 ## Quick start
 
-Packages provided by this repository can be installed on **Alpine 3.21** for *amd64/arm64/riscv64 architectures using an APK package manager.
-Here is a quick example on how to use it:
+Packages in this repository are compatible with **Alpine 3.21** on *amd64*, *arm64*, and *riscv64* architectures using the APK package manager.
+Example usage:
 
 ```sh
 # Install key to verify signature of repository packages

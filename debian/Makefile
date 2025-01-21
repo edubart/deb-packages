@@ -1,5 +1,5 @@
 # List of packages that doesn't depend on the architecture it's built on
-PACKAGES_NOARCH=\
+PACKAGES_ALLARCH=\
 cartesi-machine-linux-image \
 cartesi-machine-rootfs-image
 
@@ -31,7 +31,7 @@ KEY_NAME=cartesi-deb-key
 
 # Package list to build
 ifeq ($(TARGET_ARCH),$(shell dpkg --print-architecture))
-PACKAGES+=$(PACKAGES_NOARCH)
+PACKAGES+=$(PACKAGES_ALLARCH)
 endif
 PACKAGES+=$(PACKAGES_ANYARCH)
 ifeq ($(TARGET_ARCH),riscv64)
@@ -59,7 +59,7 @@ packages: $(patsubst %,%.deb,$(PACKAGES)) ## Build packages for given TARGET_ARC
 	mkdir -p /builder/$* && \
  	cd /builder/$* && \
 	cp -a /work/$*/* . && \
-	REPO_NAME=$(REPO_NAME) REPO_URL=$(REPO_URL) ./build.sh && \
+	REPO_NAME=$(REPO_NAME) REPO_URL=$(REPO_URL) /work/build-deb.sh && \
 	chown -R $(shell id -u):$(shell id -g) /apt/$(REPO_NAME)"
 
 key: ## Generate package signature key
@@ -110,13 +110,13 @@ test: ## Test built packages for all architectures (amd64/arm64/riscv64)
 ifeq ($(TARGET_ARCH),riscv64)
 test-packages:
 	@$(MAKE) --no-print-directory exec COMMAND="\
-	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_NOARCH) $(PACKAGES_RISCV64) && \
+	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_ALLARCH) $(PACKAGES_RISCV64) && \
 	rollup --help && \
 	cartesi-machine"
 else
 test-packages: ## Test built packages for given TARGET_ARCH
 	@$(MAKE) --no-print-directory exec COMMAND="\
-	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_NOARCH) && \
+	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_ALLARCH) && \
 	cartesi-machine"
 endif
 

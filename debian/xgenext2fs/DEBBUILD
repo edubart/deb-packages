@@ -1,0 +1,13 @@
+#!/bin/bash
+pkgname=xgenext2fs
+pkgver=1.5.6
+pkgrel=1
+sources=("${pkgname}_${pkgver}.orig.tar.gz::https://github.com/cartesi/genext2fs/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=("34bfc26a037def23b85b676912462a3d126a87ef15c66c212b3500650da44f9e  ${pkgname}_${pkgver}.orig.tar.gz")
+arch=any
+
+prepare() {
+    # Extract
+    tar -xf ${pkgname}_${pkgver}.orig.tar.gz
+    mv genext2fs-${pkgver} ${pkgname}-${pkgver}
+}

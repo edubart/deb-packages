@@ -1,14 +1,11 @@
-# Cartesi Debian packages
+# Cartesi Debian Packages
 
-This repository contains scripts and `.deb` packages for Cartesi Machine and other Cartesi related software.
-
-All packages binaries are available in the [cdn](https://github.com/edubart/linux-packages/tree/cdn) branch in the `deb` directory,
-while the scripts to generate them are available in the main branch.
+This repository contains build scripts for packaging Cartesi related software for Debian/Ubuntu.
 
 ## Quick start
 
-Packages provided by this repository can be installed on **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble) for *amd64*/*arm64*/*riscv64*` architectures using an APT package manager.
-Here is a quick example on how to use it:
+Packages in this repository are compatible with **Debian 12** (Bookworm) or **Ubuntu 24.04** (Noble) on *amd64*, *arm64*, and *riscv64* architectures using the APT package manager.
+Example usage:
 
 ```sh
 # Install key to verify signature of repository packages
@@ -64,7 +61,7 @@ make all
 In the first time this will generate the Docker image, a new key for signing packages, and build all packages
 
 This may take a while (hours) when building packages from scratch.
-When finished the packages will be available in the `../cdn/apk` directory.
+When finished the packages will be available in the `../cdn/apt` directory.
 
 ### Building a single package
 
@@ -79,7 +76,7 @@ Now add or patch the related package build script,
 you can then build it for a specific architecture with:
 
 ```sh
-make cartesi-machine-emulator.apk TARGET_ARCH=riscv64
+make cartesi-machine-emulator.deb TARGET_ARCH=riscv64
 ```
 
 In this case it will build the `cartesi-machine-emulator` package for `riscv64`.
