@@ -1,7 +1,7 @@
 # Maintainer: Eduardo Bart <edub4rt@gmail.com>
 pkgname=cartesi-machine-rootfs-image
 pkgver=0.17.0
-_pkgver=$pkgver-test1
+_pkgver=$pkgver-test2
 pkgrel=1
 pkgdesc="Cartesi Machine guest root filesystem image"
 url="https://github.com/cartesi/machine-guest-tools"
@@ -9,7 +9,7 @@ arch="noarch"
 license="GPL-2.0"
 options="!check"
 source="rootfs.ext2::https://github.com/cartesi/machine-guest-tools/releases/download/v$_pkgver/rootfs-tools-v$_pkgver.ext2"
-sha256sums="6ca4073504bbc3e42cfda7641bb66aed1e0cd5122146544869b49aa09befe01e  rootfs.ext2"
+sha256sums="293f377b0cb32cc477ef2c71be9430bab3a25d54eb0ab9aff07a4e6fac6aa829  rootfs.ext2"
 
 package() {
     cd "$srcdir"
