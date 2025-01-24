@@ -112,12 +112,12 @@ test-packages:
 	@$(MAKE) --no-print-directory exec COMMAND="\
 	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_ALLARCH) $(PACKAGES_RISCV64) && \
 	rollup --help && \
-	cartesi-machine"
+	cartesi-machine --final-hash"
 else
 test-packages: ## Test built packages for given TARGET_ARCH
 	@$(MAKE) --no-print-directory exec COMMAND="\
 	apt-get install --no-install-recommends -y $(PACKAGES_ANYARCH) $(PACKAGES_ALLARCH) && \
-	cartesi-machine"
+	cartesi-machine --final-hash"
 endif
 
 distclean: ## Remove everything from APT repository directory

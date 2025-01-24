@@ -97,12 +97,12 @@ test-packages:
 	@$(MAKE) --no-print-directory exec COMMAND="\
 	apk add $(PACKAGES) && \
 	rollup --help && \
-	cartesi-machine"
+	cartesi-machine --final-hash"
 else
 test-packages: ## Test built packages for given TARGET_ARCH
 	@$(MAKE) --no-print-directory exec COMMAND="\
 	apk add $(PACKAGES) && \
-	cartesi-machine"
+	cartesi-machine --final-hash"
 endif
 
 distclean: ## Remove everything from APK repository directory
