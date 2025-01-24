@@ -1,20 +1,20 @@
-Date: Fri, 24 Jan 2025 17:23:34 +0000
+Date: Fri, 24 Jan 2025 22:08:09 +0000
 Label: Cartesi APT Repository
 Origin: Cartesi
 Suite: stable
 MD5Sum:
- b546616eafc99e0748b2349047b60022            14040 Packages
- 24fc9a89fc98dc0bd9ba1dd0f108f1bf             3656 Packages.gz
- c8af32edc2766e7c2bac50f6a99edaa8               98 Release
+ ee5d11af63b043f83c545a39c5e52564            14045 Packages
+ 520165381b107f40de292ef4503202cb             3638 Packages.gz
+ 9195071196992cf1f7ece967fa7a70c0               98 Release
 SHA1:
- 5f6350a7910ab1af1d1dcf459001a868b4d83006            14040 Packages
- 7e2902e535130355b0907c80ff2e1ae95e2aeaf5             3656 Packages.gz
- 7dbcc1e5e93c815cd2a32689227c1dd03e67316d               98 Release
+ 2db2c0e3da7b60bc23b2cc2b49144c019220f61e            14045 Packages
+ 72a90024f7a2dd36223e4292f974dafe062fa275             3638 Packages.gz
+ 7ffe47c042ef1c314a22801243daf2ff7dac5a32               98 Release
 SHA256:
- 52ad1d514670b2212865839734d6b8bd4d0a62fbed84c3fd991102562764ed07            14040 Packages
- da605b24d099ae10c9762e9e3e86336ac1c80d6424e7ba92b27b85d555d8bda6             3656 Packages.gz
- aeb4a9b57eab5701a4d28c578c8f4d3bb744aa062467ba5130185a4373c71abd               98 Release
+ fc2afffa6e88fa53cf21ab36befc7ddcf50e753517b16280a93dcc1ac1336350            14045 Packages
+ 5cb09a5f5f8cd52fb912e04dd30184705d72218a6209677ced8a187783be5ee8             3638 Packages.gz
+ 01d14a6a7bd4913d3e957c123a59772e255e3348f4fd8a9c51457bb96601711d               98 Release
 SHA512:
- 2ca38dbaab8794e36727e5566cf432ded0ce2a0e043ca054432f87fa68d7f0fbd179efe3c0b6b1512f87a8ede2e3e91e795a30d695ea06016440c1b91c25505d            14040 Packages
- b4451d5fb62cb38ee5ddfe0b866fc4c555baabfa4e34e784888e365612b9dfdf7e244f42cc0d3b7ff9614600995b90d467900af8e703f310b44d59763ec05fd7             3656 Packages.gz
- 44840415ebcf3c29e5759b9043ba570eef8c999bb1c992e4457ecc36861204d6f5f524e41a2982fd25b2f61531c2d7c4c3a9419ab11537af5a5c8fde7be56564               98 Release
+ 39c9d17246aa7f90f5175186bfef60906fbbce4ba0cd13d0d453aa8cb0a1ad35f9fd8c2f220206452f591265204c09d38b39819169d9feb2cfc20b668aa62cab            14045 Packages
+ db4ff35bbacb06cc159eaef524d1c16df4f70264741d7f5fefcc338f9a02f3d78c3c1a37e72f09d0127017806c5d23cde6eb4cf11d8c8f66ebfa68bc364af7c7             3638 Packages.gz
+ b91bfd2284c325d6084f886ed4ca616b7539a0952bd48dee8c8fdaa387b3987ffe3412af706910c8f8ff6099402e61feeebaaefbc34c0036faa4ae48b0957d14               98 Release

@@ -15,29 +15,29 @@ Package-List:
  cartesi-machine-emulator deb otherosfs optional arch=any
  cartesi-machine-emulator-dev deb libdevel optional arch=any
 Checksums-Sha1:
- 7a3853bd43735611c8aec4fee9f10054def11ade 1169697 cartesi-machine-emulator_0.19.0.orig.tar.gz
- 1318ed7d6b56c6f48730383664936336578d8a93 41852 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ e60f9ce2fbf52d1a6f4493204911862047d4e295 1177599 cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 848b06dfb88e82e90903dda93d1b07b56d236fb4 82208 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
 Checksums-Sha256:
- 93121d1c7edf5ebc8d5b8b042d3b18a4cf2454c702ec2cfe8c92086d7529e16d 1169697 cartesi-machine-emulator_0.19.0.orig.tar.gz
- c0fa5a4cde965be2bca58557e7a6ac203fc3af97184d4be54a71ee658adef7f5 41852 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ a188a9af51afc15e2b2c72eb4e835bb8114e493d92aecdac6888d55345944abd 1177599 cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 78fee4f40d55e94a604b8c8bde0da03cae096a4e643e639f9ca9b24b866fb028 82208 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
 Files:
- db57e3381af9cba5c558a6a1f4af88d4 1169697 cartesi-machine-emulator_0.19.0.orig.tar.gz
- d58ff43103596c8c1e0747853791a414 41852 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ 2d9a4bcbafbbdf6e09d6cbe2d22ba569 1177599 cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 2bf1f46cff4336d865f7ce95e0163a4e 82208 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeRJ5UcHGNhcnRlc2kt
-ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBh/OVD/0YrNwkBmj7WAs7AYGD
-iQW6Ba7EqlJ8x5EipETUBLu/kaSTCX+wvQWa9jDLQn7pmGGuhD4VCuDJ3EWKi4Jm
-R8S0oc0I6kzJMDnrKZXbaL36yLrVtpUMNxWfzqw5+S3hsNPUVkZjoSsPZVvXHfYz
-ELZHAMM/zngmohTuvF++avNKLBowb+pNshaEWxa12bnWlUfu1XutVM+JjUjSrGPY
-ZLSmr4aQpjjbkcO4RCON22aM/Tv/QOUJJpJ+xTsjLd9YJ9iXnYPXPPAC6wTqyv+r
-9fSG05WqaImLU7xhje6UMHq2STvCXqEqTY/Oq0rDDicT3qVV3lbMmDVkLWbMAJDI
-JUKmJAKOUMW/ITr/MPDa3/uUgukjL7em3No/zXjjU9jqhMnVcruDJI7hWDvOqwth
-o/EdziM3uFm5l9ivd50Q/yyYPPjEoz8XXBWDhqBQyl0njZ3RWLuYLlVyJ9/Xpt3x
-dFDCEH85Rn6/LEcjErTPf5GWb8mVci7aP1VE1anIsUy4dqEGjbIk07OLhEGasbyJ
-aYZkP2+vkiOzoXU4UhIJxkgGs/0HruMB7OwcS4QWZblC6GrYJbfeSy6DHHU01pVv
-M78MW/iq4JjvdFqLRinBW2/k2FBrNEbFIf/vynm55iSOn+IKZR3/VFhaC84n4nLu
-mzyHZD1IsV4V/J4mjNOED4nh5w==
-=38fW
+iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeUD0QcHGNhcnRlc2kt
+ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBhxqzD/4vL449lGr/WbMZJHiu
+6GdDsqNQ8muQgTc0ieGDIRjCdDx9z39uKVmxr/gKWtWXQaEWfo53TMNF1uamB7HF
+b8E7hSsQv5lZRVODDG2FlHrlYvyKWLdBk0/HSLhkwa9Ld24LT531TSvxMvfi36ES
+RnjbXOPDqP/gpgP+HhppYjEzQEuAJmbKk5IhULSU+xkzx/BpQga1UzkksXGvQkgZ
+FlqMv3n1OA2br+2BkYTZBvuuYEOnqHIuV/cEXPqUhsCXOprqfvovYJ+9zMmqLZQH
+li3Hzt51tq9hINOJh4jDUXi7/b16Sdx2H9zmnR+FjEgiKJRaZ7mOGXfX9DMEVOuB
+vojVr2AIRFzwlZaPEln2eocZ+ZOLizTFi/lsbt5xTj+7HcbJ3JS+llm8EkGLVzn8
+D6OAKzhwhFQHmNYFuigISgor20AF9xC0XIKEHP58nbV7MPgkrjtIVrH7nCpb0Ict
+temMQGD9WRYtkRgDElc33H/3NV0RZggRClV7zrjDm3XqhOf3hxGp3CzU/xcMivWP
+kRWJP30yq/VjLdKn265VTMzGTEBNTEKs0Pa4knFhixq9ST1LZ9od433qNHvUrMPE
+7RaMmApdH5thEvo5m9P9N+K+fM+cBjPfz9s+qCmUgnNOzXB+q4jCnjNlURG8mAtK
+uKdxe5GL/+s3jYsk+W40054ZNA==
+=6Kbe
 -----END PGP SIGNATURE-----

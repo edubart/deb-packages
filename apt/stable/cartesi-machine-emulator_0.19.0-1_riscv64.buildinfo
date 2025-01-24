@@ -7,26 +7,26 @@ Binary: cartesi-machine cartesi-machine-emulator cartesi-machine-emulator-dbgsym
 Architecture: riscv64 source
 Version: 0.19.0-1
 Checksums-Md5:
- b399285c48e9bd67d1d8cb1024047d77 2157 cartesi-machine-emulator_0.19.0-1.dsc
- 39ff3a8cea31bb0ae74900bac3e0f800 26846816 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
- eb6d1e4d73b71f44c3a00ed213e18fa8 5195806 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
- f7a6ec4d147de40913d9a15bf96801de 2904448 cartesi-machine-emulator_0.19.0-1_riscv64.deb
- c5f1ffae9c574220e6256172ca06b35c 1714 cartesi-machine_0.19.0-1_riscv64.deb
+ cab9ec93c7671d02113c81ac0def034b 2157 cartesi-machine-emulator_0.19.0-1.dsc
+ 2e856a784e1abdb150b79ec498a703ce 26795496 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
+ 3fb75a1c8c775398c920dbfa3b1a6744 5417104 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
+ 4299b18b143d0800ecc8f4ea6c3cd665 5950420 cartesi-machine-emulator_0.19.0-1_riscv64.deb
+ 27464e4b9fba158de7874e9ee3fdc761 1712 cartesi-machine_0.19.0-1_riscv64.deb
 Checksums-Sha1:
- 15f15e2bd19c044957482b709a2c0a98fa3b258c 2157 cartesi-machine-emulator_0.19.0-1.dsc
- 966fc57266d95f2b64a234e04e008f81df832ae6 26846816 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
- 4a39882d3f3795d23616962634aa5d73233a80c7 5195806 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
- 356f6702d1abc067ecb6606f8f791e074ab4390a 2904448 cartesi-machine-emulator_0.19.0-1_riscv64.deb
- 44f103f1ef07b5a8092b7ae1c5b3ddb71049226c 1714 cartesi-machine_0.19.0-1_riscv64.deb
+ bada2732ca8f8052c83621831e28f2cd728d673f 2157 cartesi-machine-emulator_0.19.0-1.dsc
+ 258e0a49265cfb613cf139286f867eb99343c7b1 26795496 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
+ 04b601880b415f721d29c0b6968186e7152bf5d6 5417104 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
+ 0143cad3b93e88ebcd58aa873a523954104c087c 5950420 cartesi-machine-emulator_0.19.0-1_riscv64.deb
+ 299a9220890ab69451faafe9545a6eb7203d755f 1712 cartesi-machine_0.19.0-1_riscv64.deb
 Checksums-Sha256:
- ba757061a1034f652837da121e5a239a876d2a42b94b2bd0bdb3998f47893220 2157 cartesi-machine-emulator_0.19.0-1.dsc
- 96f3c8b0d1d6f15fabc35eff044e119c118015b4fde46de467fdd5f744c3dbad 26846816 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
- f6d9cae5305548b6125af454ccf4eb99a4ced0279b9cc9962a9583ccc8c50bb2 5195806 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
- 3f2cc8f71bdb9924529ea0ce6872f26f129ff9ad7f5aef1f101e5a16168f6907 2904448 cartesi-machine-emulator_0.19.0-1_riscv64.deb
- 209cc658472c7a2275f6d91b660e90a971e85aac0fdc4b7e55ddab51da2f83c6 1714 cartesi-machine_0.19.0-1_riscv64.deb
+ f6f77b24c1028f228ccc2cd65cb248c0120d8fe5553929489311531bc94ab70d 2157 cartesi-machine-emulator_0.19.0-1.dsc
+ d4ab96a1878373b4b4677737dab28e3b5fefa6c1bbaecbfd7008b26e2bd52833 26795496 cartesi-machine-emulator-dbgsym_0.19.0-1_riscv64.ddeb
+ 4ab226b3568c08e0ac487e69ef7b9be3d4475751d8b8ca7ec1f4d355f53ed0fc 5417104 cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
+ 5efbd8d63bcfabc8dad773e34befe0ccb7bec4521126f42387de758e34294047 5950420 cartesi-machine-emulator_0.19.0-1_riscv64.deb
+ a87c86091732499f675958f41d557f3dfb7a72f195eb9bcefdfe1a1a0c3d87f4 1712 cartesi-machine_0.19.0-1_riscv64.deb
 Build-Origin: Ubuntu
 Build-Architecture: riscv64
-Build-Date: Wed, 22 Jan 2025 17:14:59 +0000
+Build-Date: Fri, 24 Jan 2025 22:08:02 +0000
 Build-Tainted-By:
  merged-usr-via-aliased-dirs
 Installed-Build-Depends:
@@ -194,22 +194,22 @@ Installed-Build-Depends:
 Environment:
  DEB_BUILD_OPTIONS="nocheck parallel=32 reproducible=+all"
  DEB_BUILD_PROFILES="noudeb"
- SOURCE_DATE_EPOCH="1737473219"
+ SOURCE_DATE_EPOCH="1737754778"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeRJ5UcHGNhcnRlc2kt
-ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBh1y+D/9TlUPSNf6tZ6Fy87Mv
-R0Lzm9RQqQoeMYjEe9gcONsXUhi4Z9jz+tc9E3vfEjLhUfYzg2uVEfpNyrMOBnbn
-nTCJTdpek+gCnkVbgRqKR8UsCl6qhSmkQPchS7AdyujBCQveWQTUZTn6D7uPp5+5
-KqIN6ImM6/uqKWlElUQkNVi32TJ3Kfmh7adcw0tiq383yB6Zn3Gze6mmxYn7bWSg
-zBdhmDOLwAvDtb/0Wgxn71aeNhOChz8GIOaS2gvhlOPmQ2guvdlc80k7ZIU1F1ZG
-c6+8dXYwYcdU/UlSvymYH8gY5LAU5A46o79kDWSAYlnJGkqBulh/tS+DzF7vrzIT
-tt9qIZUGbGOKXUaC9ERSJpNmbSSoIV7t8hAgt0eJOKwTBgdz6Pe5hKBwkeNAowUc
-cOF+NqshGrceV6M2fvwH6pl+Wog4+D2K2tkrtjxgQHiJSDX32+2tpVWPs6ZAqa6w
-t0Vz65XIAS2Bnn/YgHSOTVaZrbeuw2LOUCjT416G1d5N5Ew/GTtq6CuC3eqazT2F
-olxgQdRnQFr/biPq1Ly/+ShB6GjJvDMMcT7rFJE1b121xN2iNQdAMAtcUB5w3Ssa
-u4kIeDpMNA5Pt3V6ak3CLGW5Coam1fUqrbC5YHkCdbioRAcuiBXAduPuQ0uekjnO
-cfrSpdCzwJXA278/y0kwW2M52g==
-=e8uV
+iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeUD0QcHGNhcnRlc2kt
+ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBh+zQD/9M0O56wwYGpDUEftBu
+OzW8jXVJxtwqDVUgtmxLu7SbjbKHjyV4jrXkUv9DLSyAFeHPmje36OKOxQFxod0n
+pO9krx5XtuKeRcpFePmJEJm4U6+8KC4hHfG12UTHsFTwiawgQdEmK7yAJnhAK6F3
+heT/xj1hcS8rtk8LZl/BVnnxeMD/odQT1nUJV96CATjrMGR/hr6eiUI3I4Qul3So
+BGhIRNBDuAFvszAND2htG5b7hojjS9Kw4Rud/ur4CCVUstFh+kftkj/2Hx81BHeO
+1DZh6lsVg4026aoYFNujIKlMy0U8UTmqeZQ6qMMj8/NOLSXGVUlIUGpBchgCI0jK
+d50HewG0UnuomQnIoLthpj0BW9EFZHbbBjSW5zVe63lE12H2+9j7SNenT8jPFbJu
+zLb2QbRTfbJqVvqe8DGJUhqwFbD84Jb/csSfhJ/E5MpWyntH2Kres40CwGULRLhf
+UPph/5k1NKkoIaOX0gosKJ4aZcE7yBdxsOm5EJmlnQku5bvIlIWgfTXunZeVbsze
+qaXP2u1XZtn9TokZJ+ki3lH1NvBkhu4UflnB7fpUrPDPibj1sf5I8dhU+DWFreGg
+o0Q3UWd/On+xe15Qr7gmoOW6FdXEJunla1wkps7gZ9Nqouggs3ykXtLz7E4IXxEN
+brX+p0N0+sz6cXLRFDyGFI5d+w==
+=VKB+
 -----END PGP SIGNATURE-----

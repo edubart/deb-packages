@@ -2,7 +2,7 @@
 Hash: SHA512
 
 Format: 1.8
-Date: Tue, 21 Jan 2025 15:26:59 +0000
+Date: Fri, 24 Jan 2025 21:39:38 +0000
 Source: cartesi-machine-emulator
 Binary: cartesi-machine cartesi-machine-emulator cartesi-machine-emulator-dbgsym cartesi-machine-emulator-dev
 Architecture: source arm64
@@ -20,47 +20,47 @@ Changes:
  .
    * Please read the project sources for release change logs.
 Checksums-Sha1:
- e7c10c5f2a4fb3c2833448d17fd360aabd0fd5d6 2157 cartesi-machine-emulator_0.19.0-1.dsc
- 7a3853bd43735611c8aec4fee9f10054def11ade 1169697 cartesi-machine-emulator_0.19.0.orig.tar.gz
- 1318ed7d6b56c6f48730383664936336578d8a93 41852 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
- 2b21cab2bb4f61d9a14702808727916bcf5e6cc5 38859160 cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
- a701fe14a0b5a2962c13ecbe1c8e1d0f0784603e 800176 cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
- 7ce167f63a7e1975fbb51923232be39e4f892b8d 7570 cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
- 28c750b78338cee5e80d09f9be57e714fae2b553 2001072 cartesi-machine-emulator_0.19.0-1_arm64.deb
- 6d2755f1e06ba6f75c516e737d4f8b42d9d7be0d 9292 cartesi-machine_0.19.0-1_arm64.deb
+ d17f2ea5233e0edbd0c8732666d08a3235a2350e 2157 cartesi-machine-emulator_0.19.0-1.dsc
+ e60f9ce2fbf52d1a6f4493204911862047d4e295 1177599 cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 848b06dfb88e82e90903dda93d1b07b56d236fb4 82208 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ 4cc5b7b8f97ac73e84045c9242dad3c9199fec5d 38275036 cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
+ 1d2e98dc166b1d0e58c635277b76ad4b5996f73c 927424 cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
+ 846a0efa2d053c5b2e9eab94906b288a1571ac55 7573 cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
+ f2fa6be152643dbef4ab804d327034a84afaacb5 4177720 cartesi-machine-emulator_0.19.0-1_arm64.deb
+ 3f043c04f0be39e8f3fc8a65a9567f59c5fb9c57 10620 cartesi-machine_0.19.0-1_arm64.deb
 Checksums-Sha256:
- 35bd8f176558d1ec3ec6bd83a2441b7393c88c0584d2cb4a51f4bbe40a6bfd1d 2157 cartesi-machine-emulator_0.19.0-1.dsc
- 93121d1c7edf5ebc8d5b8b042d3b18a4cf2454c702ec2cfe8c92086d7529e16d 1169697 cartesi-machine-emulator_0.19.0.orig.tar.gz
- c0fa5a4cde965be2bca58557e7a6ac203fc3af97184d4be54a71ee658adef7f5 41852 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
- 5b5516fbb125eecf3193529f05fa19afdad2472ab936767423895b1f4d40c738 38859160 cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
- 041c1402e987055a86c76ff9c56af477b3063bbf90564a5bb738605ee385d0eb 800176 cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
- 25e6be7484d4838a706658670747a1d138c4a7c0908a1dff3ae6cdb3f8257f85 7570 cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
- 045c0a3129a8cd8833ea322cef71acfff1d975cd44cd681a6b87c68234a40052 2001072 cartesi-machine-emulator_0.19.0-1_arm64.deb
- 52313db47dd3c2cd1007ae05b9c0b884d398009956627bfb0b2e98c1942c4fb2 9292 cartesi-machine_0.19.0-1_arm64.deb
+ d0c054e652001d603a69e25c559376512a0563c328229a4f5e7114d1e1c983ef 2157 cartesi-machine-emulator_0.19.0-1.dsc
+ a188a9af51afc15e2b2c72eb4e835bb8114e493d92aecdac6888d55345944abd 1177599 cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 78fee4f40d55e94a604b8c8bde0da03cae096a4e643e639f9ca9b24b866fb028 82208 cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ c67e88c5ab6be499147b8a133a4acc4adb7b8c25bbc84bcb1536d174877916e6 38275036 cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
+ 5e1453815d24e4b3658da861f2d8831d9abfc66449ad1d393833edb295521884 927424 cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
+ af2f5cc52c849a078b184a0fad25cb6671d0f3e772e951ae25f6f7ee2ebd4b78 7573 cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
+ b28a3b165330d172c9b5d7581c4d6d17c74ecf9bbb67f3b0c2fa2ca18d1fe3df 4177720 cartesi-machine-emulator_0.19.0-1_arm64.deb
+ 0c84ca4586111123c165e90f983ba06608fc167edd05e2bfe4392c3e5acc3d23 10620 cartesi-machine_0.19.0-1_arm64.deb
 Files:
- a2152ec8ffc4d8f4ba35ffe90d12bca7 2157 otherosfs optional cartesi-machine-emulator_0.19.0-1.dsc
- db57e3381af9cba5c558a6a1f4af88d4 1169697 otherosfs optional cartesi-machine-emulator_0.19.0.orig.tar.gz
- d58ff43103596c8c1e0747853791a414 41852 otherosfs optional cartesi-machine-emulator_0.19.0-1.debian.tar.xz
- 381b7862e22c12448a0c474612c73eaf 38859160 debug optional cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
- 7028a6093844336f868c16695373f22d 800176 libdevel optional cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
- edf2c66f201a09a5c734e62dfe4e1cb9 7570 otherosfs optional cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
- 44b09964e37dfef356d8bc89e7b26250 2001072 otherosfs optional cartesi-machine-emulator_0.19.0-1_arm64.deb
- 30b08432fc7ea58509fe0560f5df7ad6 9292 otherosfs optional cartesi-machine_0.19.0-1_arm64.deb
+ 319f329dde63eb8eb880f8af8556800c 2157 otherosfs optional cartesi-machine-emulator_0.19.0-1.dsc
+ 2d9a4bcbafbbdf6e09d6cbe2d22ba569 1177599 otherosfs optional cartesi-machine-emulator_0.19.0.orig.tar.gz
+ 2bf1f46cff4336d865f7ce95e0163a4e 82208 otherosfs optional cartesi-machine-emulator_0.19.0-1.debian.tar.xz
+ c8a6b7406cce8e47109f4e37a68dd1b1 38275036 debug optional cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
+ defff4a8fa3ace5532fe1bf41659739b 927424 libdevel optional cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
+ e9e3b65fbad5ef96161bf8622296ebaa 7573 otherosfs optional cartesi-machine-emulator_0.19.0-1_arm64.buildinfo
+ 7c037b28ec31709712db9e4560152740 4177720 otherosfs optional cartesi-machine-emulator_0.19.0-1_arm64.deb
+ 6c6e0adbc29dae264dfb225874af10a7 10620 otherosfs optional cartesi-machine_0.19.0-1_arm64.deb
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeRJU4cHGNhcnRlc2kt
-ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBhwwaEACGPrYDNFHgWJDAmVeF
-XZK4yzKR+6Tf6YcLqpb41dWVzOkMrWkGwV3wGoTvINdI5XrpFf+3kuwfj58udb2y
-riVTXqPuCbYkj36WBCwnhLMQfTtT9FtTNKdZmVA29e4uQVwYl50fklnMylxXAbx/
-v6Us9OmOP1zPPJwhW4IwdhrHYPpW+q/2QOWMGm3gXYKbwsGXWePitVNtHhZeRYly
-5L4HnzjW/axBSx7XJc/JQMTVba9CHwe2QMPW24GtbUWUajmsQnqKTYFcIqFx6MUZ
-8fcWteYds+GWTDbLcvgpwR1WTQccggqPQy52jeN18BaFU7+SabdDIQa2G8KrlBCb
-k+qTrtmh2o/dVFbh8VYoDJ49LnP2jO65tRQlYAwWJ3aHGRyVRpCOoYq3PjDFrwLo
-uHsJkpGYpZDu3+tuSXNsxatBrID15TRwweVmDTUequ12KOV8Wp16zhPYZjk9Nfa8
-e1GbmpEiEdTGPI8jZ1NuVqeNl/0REd9+oS/+uu/AQTnmgbOysDxmntB7zHnERTJX
-FYgBz5OsymRKNv72Pb9AoGzoz4AXBWoN4syeHxnnVa9DhhKaDGQfA8wWKwimIceC
-lHyQ/YmoJDylFG5pLJB+NZPMWvN7V4KS770iPyAp48Lyif2eWj+gdkJXmSOd9uvJ
-i1LJ4BsBaOqzNvFhN1EvTIE8zA==
-=eiV5
+iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeUDhUcHGNhcnRlc2kt
+ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBhwlDEACC7zg1Wbu+AfhsZBIe
+vTDnlkOMZ2j9PVoZzrKdOKY1gsSeatiu3ij61sWXHQ19prAK5pcU+Oq3k/bCxUca
+5nl/T4tXPcQp034gcXxqbnu2gQ8CRMeQSi/usYbDKUUa/cLwgiH2DsutL6kjIyu5
+AtmvL+UI2uVajIuL2Re/KLyUyyC1Cn91LKVO0UCxQLmNbJf0DqOnPwSDCT/WzLzd
+ysHcMoMwBJkLyTaphXP5DYNsAh+gM9BoAvHAa1z1EZVxm37LHkDISvRs1UATUpTr
+/oNh7LRFBV9uZ9Pba/W7WQKIdC1RN/IzRCC7X0AX7awE9LQ54BvF30SCVesfQMxG
+ltnsWrUVnhnnTt1kuvQV3sbkKcMpoDTAnwYJ6Ng6Jxfx+YLtzK5MlHChjRiuNoXZ
+9WZa0WIS61KGMKk3+UDXh3Jz/5MmWRcAYksVLLiYKz6VwWqV8EXl0+w6qDXhucmw
+GeUANmb7Grs7nk/iw15+NDu1Lis8yFRvF/WkKJ00lNj7kDaXqvjOQ3DME4Mq3w41
+ij4+PFTKjq8pO8hb8dXOBLS/U6NbwQgqtk+/U8K2O6064ODBqQIFrJXSApJ2blCy
+KkqPii2nal2YxFAhWMr5bN5mmIDzonEt9uwyTzUnZwyK6sVrkIr1uaZIS0ND2e6Q
+WGpCOJL4iWBAgFVZGKDPY3WDHw==
+=GY9Q
 -----END PGP SIGNATURE-----

@@ -3,13 +3,13 @@ Source: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: amd64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 17
+Installed-Size: 18
 Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
 Filename: stable/cartesi-machine_0.19.0-1_amd64.deb
-Size: 9292
-MD5sum: dfff382a30e1e33985e90f8b3573404b
-SHA1: 7a2f93149120887a6d1641236e7672a9203df270
-SHA256: 4e864f3f45ffc99b4e0b35985f31b18f3e3a7a18214246f22550c019c567b4b6
+Size: 10620
+MD5sum: 51ada210c310da30d0f9adc1e5548fa6
+SHA1: 59c2b520f878a86c8e97a9156cb52d63b368e9ff
+SHA256: f68297c060453d96f0397fbbea46f43f28d3f41bb01218fbe3af0d6325fe4da8
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -24,10 +24,10 @@ Maintainer: Cartesi Machine Reference Unit
 Installed-Size: 9
 Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
 Filename: stable/cartesi-machine_0.19.0-1_riscv64.deb
-Size: 1714
-MD5sum: c5f1ffae9c574220e6256172ca06b35c
-SHA1: 44f103f1ef07b5a8092b7ae1c5b3ddb71049226c
-SHA256: 209cc658472c7a2275f6d91b660e90a971e85aac0fdc4b7e55ddab51da2f83c6
+Size: 1712
+MD5sum: 27464e4b9fba158de7874e9ee3fdc761
+SHA1: 299a9220890ab69451faafe9545a6eb7203d755f
+SHA256: a87c86091732499f675958f41d557f3dfb7a72f195eb9bcefdfe1a1a0c3d87f4
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -39,13 +39,13 @@ Source: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: arm64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 17
+Installed-Size: 18
 Depends: cartesi-machine-emulator, cartesi-machine-rootfs-image, cartesi-machine-linux-image
 Filename: stable/cartesi-machine_0.19.0-1_arm64.deb
-Size: 9292
-MD5sum: 30b08432fc7ea58509fe0560f5df7ad6
-SHA1: 6d2755f1e06ba6f75c516e737d4f8b42d9d7be0d
-SHA256: 52313db47dd3c2cd1007ae05b9c0b884d398009956627bfb0b2e98c1942c4fb2
+Size: 10620
+MD5sum: 6c6e0adbc29dae264dfb225874af10a7
+SHA1: 3f043c04f0be39e8f3fc8a65a9567f59c5fb9c57
+SHA256: 0c84ca4586111123c165e90f983ba06608fc167edd05e2bfe4392c3e5acc3d23
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -56,13 +56,13 @@ Package: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: riscv64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 16565
+Installed-Size: 50165
 Depends: libc6 (>= 2.38), libslirp0 (>= 4.1.0), lua5.4
 Filename: stable/cartesi-machine-emulator_0.19.0-1_riscv64.deb
-Size: 2904448
-MD5sum: f7a6ec4d147de40913d9a15bf96801de
-SHA1: 356f6702d1abc067ecb6606f8f791e074ab4390a
-SHA256: 3f2cc8f71bdb9924529ea0ce6872f26f129ff9ad7f5aef1f101e5a16168f6907
+Size: 5950420
+MD5sum: 4299b18b143d0800ecc8f4ea6c3cd665
+SHA1: 0143cad3b93e88ebcd58aa873a523954104c087c
+SHA256: 5efbd8d63bcfabc8dad773e34befe0ccb7bec4521126f42387de758e34294047
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -73,13 +73,13 @@ Package: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: arm64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 16627
+Installed-Size: 49888
 Depends: libc6 (>= 2.36), libslirp0 (>= 4.1.0), lua5.4
 Filename: stable/cartesi-machine-emulator_0.19.0-1_arm64.deb
-Size: 2001072
-MD5sum: 44b09964e37dfef356d8bc89e7b26250
-SHA1: 28c750b78338cee5e80d09f9be57e714fae2b553
-SHA256: 045c0a3129a8cd8833ea322cef71acfff1d975cd44cd681a6b87c68234a40052
+Size: 4177720
+MD5sum: 7c037b28ec31709712db9e4560152740
+SHA1: f2fa6be152643dbef4ab804d327034a84afaacb5
+SHA256: b28a3b165330d172c9b5d7581c4d6d17c74ecf9bbb67f3b0c2fa2ca18d1fe3df
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -90,13 +90,13 @@ Package: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: amd64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 17348
+Installed-Size: 50685
 Depends: libc6 (>= 2.36), libslirp0 (>= 4.1.0), lua5.4
 Filename: stable/cartesi-machine-emulator_0.19.0-1_amd64.deb
-Size: 2260796
-MD5sum: d71d127a0dbf3208d4f1cb2a66f839a4
-SHA1: a6a6bc93f664b960e3e8fe25db78ad7040dc3d3b
-SHA256: fc6bc7f2d7b4be7cc8a4a3e18bbf7b89a576b488b8fca7efb48c2ef35030e0b6
+Size: 4716148
+MD5sum: b36233da21903da72149c62ce89c1dec
+SHA1: 3d297703fe124e2bfef53569bd7f1c85597f6650
+SHA256: cd77a961afb9e519ac1d97b645eb61f10c627be112d08ba81330727000191d4c
 Section: otherosfs
 Priority: optional
 Multi-Arch: same
@@ -109,18 +109,18 @@ Version: 0.19.0-1
 Auto-Built-Package: debug-symbols
 Architecture: amd64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 43876
+Installed-Size: 43318
 Depends: cartesi-machine-emulator (= 0.19.0-1)
 Filename: stable/cartesi-machine-emulator-dbgsym_0.19.0-1_amd64.deb
-Size: 40329072
-MD5sum: 3943af686b60a5d33fdd7aaad800a430
-SHA1: e5c2fc3a1c24bf977526ac2a09bff10c7a77ce99
-SHA256: 16c685018d552c40713381db9e31e7001134f2da9ae044805c1362f20ea64422
+Size: 39785032
+MD5sum: cb8d5f6aa661aac4b177424defd119fc
+SHA1: 28bee5960fe0081f8c002ded3e180c3bd82f062a
+SHA256: 0f3e4b24baea0c54a1d99d1bd71d48045ee0d2657a5aeaa4f440b689b9243106
 Section: debug
 Priority: optional
 Multi-Arch: same
 Description: debug symbols for cartesi-machine-emulator
-Build-Ids: 5bce1f5b80d2c1b2f63e92f230abd0f57881fbc7 6b86978d16d278a4f1360c659996664df21432d7 71a9d69a1218242d1ef419cefc6b75e176fec59a 8ad6fd2efda7029f30d9e924e01ead4a89ae2685 9ae490045ab3734e330c9d7a69880cd3a4bd77a1 c3cf061bdd7fb7908e5e652ac868676caa3b06f4
+Build-Ids: 1a2f2c0fb24b5e8d7807d06905ee0f672a9c0681 57d248686cb2a2a8571313978bad08a2fb5bd25a 61f49c68047f56f5f4707799191c4e8fe4e4806f 960c161a57b82ef7d647428dd2d11a2e7abda7de c73306851b0819a9802f6eef65053c1331d94ae6 f235c0ff67a1f0c4fa2e3b79e0e3e09ced09685d
 
 Package: cartesi-machine-emulator-dbgsym
 Source: cartesi-machine-emulator
@@ -128,31 +128,31 @@ Version: 0.19.0-1
 Auto-Built-Package: debug-symbols
 Architecture: arm64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 43017
+Installed-Size: 42438
 Depends: cartesi-machine-emulator (= 0.19.0-1)
 Filename: stable/cartesi-machine-emulator-dbgsym_0.19.0-1_arm64.deb
-Size: 38859160
-MD5sum: 381b7862e22c12448a0c474612c73eaf
-SHA1: 2b21cab2bb4f61d9a14702808727916bcf5e6cc5
-SHA256: 5b5516fbb125eecf3193529f05fa19afdad2472ab936767423895b1f4d40c738
+Size: 38275036
+MD5sum: c8a6b7406cce8e47109f4e37a68dd1b1
+SHA1: 4cc5b7b8f97ac73e84045c9242dad3c9199fec5d
+SHA256: c67e88c5ab6be499147b8a133a4acc4adb7b8c25bbc84bcb1536d174877916e6
 Section: debug
 Priority: optional
 Multi-Arch: same
 Description: debug symbols for cartesi-machine-emulator
-Build-Ids: 0c3eac1b80ff932fa355a32e9ec6bd3aee48dbb1 16b4bcb763965c405b72210f7eb89bb434489755 4971f048b23509b44b7409087bc9722ac7c0b93c b2986ada42fe752d6c8763574d19f2189938a031 e2296718dc563f23e22c9a9b8d5eaa62b1768b90 ea5bf9e3bf231fdd542cb66d6e683974e10bfa93
+Build-Ids: 33cf2486c2ecbe60a9310bf7e90212bc526d47db 42e40f04cec2610eef01e04f7079b622c26050b8 b3abe4ba48f667a9b0c86c0bb2e7e9aec54e532b c1056f396259173fefdcad01d22e865534e80204 cb4ae0ca6a40cb661c8676f9314220bb637a0af5 e6a2dbaaf0d1da9a96caab7f1ea9ce23b45675c7
 
 Package: cartesi-machine-emulator-dev
 Source: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: arm64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 7830
+Installed-Size: 15959
 Depends: libslirp-dev
 Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_arm64.deb
-Size: 800176
-MD5sum: 7028a6093844336f868c16695373f22d
-SHA1: a701fe14a0b5a2962c13ecbe1c8e1d0f0784603e
-SHA256: 041c1402e987055a86c76ff9c56af477b3063bbf90564a5bb738605ee385d0eb
+Size: 927424
+MD5sum: defff4a8fa3ace5532fe1bf41659739b
+SHA1: 1d2e98dc166b1d0e58c635277b76ad4b5996f73c
+SHA256: 5e1453815d24e4b3658da861f2d8831d9abfc66449ad1d393833edb295521884
 Section: libdevel
 Priority: optional
 Multi-Arch: same
@@ -164,13 +164,13 @@ Source: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: riscv64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 45812
+Installed-Size: 54179
 Depends: libslirp-dev
 Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_riscv64.deb
-Size: 5195806
-MD5sum: eb6d1e4d73b71f44c3a00ed213e18fa8
-SHA1: 4a39882d3f3795d23616962634aa5d73233a80c7
-SHA256: f6d9cae5305548b6125af454ccf4eb99a4ced0279b9cc9962a9583ccc8c50bb2
+Size: 5417104
+MD5sum: 3fb75a1c8c775398c920dbfa3b1a6744
+SHA1: 04b601880b415f721d29c0b6968186e7152bf5d6
+SHA256: 4ab226b3568c08e0ac487e69ef7b9be3d4475751d8b8ca7ec1f4d355f53ed0fc
 Section: libdevel
 Priority: optional
 Multi-Arch: same
@@ -182,13 +182,13 @@ Source: cartesi-machine-emulator
 Version: 0.19.0-1
 Architecture: amd64
 Maintainer: Cartesi Machine Reference Unit
-Installed-Size: 8054
+Installed-Size: 16295
 Depends: libslirp-dev
 Filename: stable/cartesi-machine-emulator-dev_0.19.0-1_amd64.deb
-Size: 865472
-MD5sum: a714a956746d2a7ee92773ad33b62c6b
-SHA1: 16bd185f5c3722e806710fbba0f0f5827f94201b
-SHA256: 89792477161bbf3064882467e48df00beb7ebf7e13588389fac2248e66166e2d
+Size: 1006744
+MD5sum: 182308ad0b9b015df0389bd1d27199aa
+SHA1: 2e83d09cea2554e7662c732521d63f0abcf11fbb
+SHA256: 1d9fe4d1c54389a40c2ae69271fdfd5ba4cf11fba9ff983366b12396de34e11b
 Section: libdevel
 Priority: optional
 Multi-Arch: same
