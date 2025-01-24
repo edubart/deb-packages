@@ -1,0 +1,55 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Fri, 24 Jan 2025 17:21:45 +0000
+Source: cartesi-machine-rootfs-image
+Binary: cartesi-machine-rootfs-image
+Architecture: source all
+Version: 0.20.0-1
+Distribution: RELEASED
+Urgency: low
+Maintainer: Cartesi Machine Reference Unit
+Changed-By: Cartesi Deb Builder <cartesi-deb-builder@builder>
+Description:
+ cartesi-machine-rootfs-image - Cartesi Machine guest root filesystem image
+Changes:
+ cartesi-machine-rootfs-image (0.20.0-1) RELEASED; urgency=low
+ .
+   * Please read the project sources for release change logs.
+Checksums-Sha1:
+ 594ffdbf59c565b6fc2a9270461285c9c571871f 1964 cartesi-machine-rootfs-image_0.20.0-1.dsc
+ f75c0c609e60dfa8b131106247cdc87b93c6b04a 47874946 cartesi-machine-rootfs-image_0.20.0.orig.tar.gz
+ 504b9494ca43cdaf9280700531edeb4c7c3a91c2 31480 cartesi-machine-rootfs-image_0.20.0-1.debian.tar.xz
+ 03ef1cdfb164d4dbf289ae69e0e077bc414345ec 6149 cartesi-machine-rootfs-image_0.20.0-1_all.buildinfo
+ 6a7668f455a5bd2900a7bdb71083d70c50b32540 33266872 cartesi-machine-rootfs-image_0.20.0-1_all.deb
+Checksums-Sha256:
+ 773009aefa977edc155f8f196ce89ea96ec965a2bc101a7898ea19e26364e428 1964 cartesi-machine-rootfs-image_0.20.0-1.dsc
+ acbf00642a8bebf3a2689f935173d7d811b2dac2dd5b41ad49045467ae238f3b 47874946 cartesi-machine-rootfs-image_0.20.0.orig.tar.gz
+ 0c3445596a8363b53b26e8df3bc043845aa6bcf8934b718f039237fd20bad719 31480 cartesi-machine-rootfs-image_0.20.0-1.debian.tar.xz
+ 73abee885431b5ec9a4d0d2fb029b51c5fd25ed7ff738373de292498ca1fe31f 6149 cartesi-machine-rootfs-image_0.20.0-1_all.buildinfo
+ 2d2efa681964ef81af2857dd797ff36b25dbe58269a019d4146320eeac4e708d 33266872 cartesi-machine-rootfs-image_0.20.0-1_all.deb
+Files:
+ ba3d9b128575a89a1fdc7c3a998e70c0 1964 otherosfs optional cartesi-machine-rootfs-image_0.20.0-1.dsc
+ 8f351b2c6aaef7572617992adac5652d 47874946 otherosfs optional cartesi-machine-rootfs-image_0.20.0.orig.tar.gz
+ a34013a7e2c0d1bbebb568ceb6088f74 31480 otherosfs optional cartesi-machine-rootfs-image_0.20.0-1.debian.tar.xz
+ cb712657cf900ee8107cc4423cefa4d1 6149 otherosfs optional cartesi-machine-rootfs-image_0.20.0-1_all.buildinfo
+ 4e00a35e51d61c8f82772075b585822b 33266872 otherosfs optional cartesi-machine-rootfs-image_0.20.0-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJQBAEBCgA6FiEEr+okFx+iireNqrwdFbt0LjqlQYcFAmeTzJUcHGNhcnRlc2kt
+ZGViLWJ1aWxkZXJAYnVpbGRlcgAKCRAVu3QuOqVBhztEEACL2rWP5S+igMrty4Uu
+YWgmvSo6FwHHEmpqCt2ORrcnrnYaPTBOFdlve28MS+gRq31xobjMZxAVwTM9wi/6
+3OlAdnKHNKB+AV1jLrzz+IX69UKhfTaDRvf/nDlGd92AVJDYS1+zlKaqgQlpWMMl
+ecJn74UUXpUTiqY5U2VtnMzE+gjqy12iiOLg73IIKhn9/Z/CCJVnqXHuUpFD0PwY
+QPWH5fVyHGdl7a9VaPzLuIaBFZfS8oPfBNLvmfZ1Yf/lpDHctHMGbPOLPc9dYdwa
+acplv/qnavFcina7m68iJJUM9SmSTsvqERVsBp+shmW5mC1Yi9ekPuoe7eEqdhaD
+9SNqPmIXsuR3DzhqzkGUgyZhQyvH6uIYDv2PIQCILIS5SE4Lolfsc4ppb4t+Su+A
+HEU5aD4JGjmYbe6CwqBfU4qbc+/S/26TiopgwIwefyUl/XsOJv14Yb3Yqd6jkZjp
+Xw5D62zcEyyICyZpZzQQ0xTm6Ki1Ecg498svvNsTFE4JstWDhUjOsUFwDYthQUTy
+KjENXTx3honJZ29VNw/z795ctEKQp1dsou7tDx2no/YYdcS0e/iK5i6qz3Wkzhab
+FTY0ScoBwcjjyHC2ZfSr4QawihU3TYfOdChNG7LpWXRhxtYjYRh02yNYrZvP8QA7
+i1mPQ46HIAwZpN37yuj2jESuow==
+=EKyS
+-----END PGP SIGNATURE-----

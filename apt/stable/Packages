@@ -295,6 +295,22 @@ Multi-Arch: foreign
 Homepage: https://github.com/cartesi/machine-guest-tools
 Description: Cartesi Machine guest root filesystem image
 
+Package: cartesi-machine-rootfs-image
+Version: 0.20.0-1
+Architecture: all
+Maintainer: Cartesi Machine Reference Unit
+Installed-Size: 144283
+Filename: stable/cartesi-machine-rootfs-image_0.20.0-1_all.deb
+Size: 33266872
+MD5sum: 4e00a35e51d61c8f82772075b585822b
+SHA1: 6a7668f455a5bd2900a7bdb71083d70c50b32540
+SHA256: 2d2efa681964ef81af2857dd797ff36b25dbe58269a019d4146320eeac4e708d
+Section: otherosfs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/cartesi/machine-guest-tools
+Description: Cartesi Machine guest root filesystem image
+
 Package: xgenext2fs
 Version: 1.5.6-1
 Architecture: arm64
